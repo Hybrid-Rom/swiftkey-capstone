@@ -1,9 +1,12 @@
 
 cache_if_missing ("words", {
 
+    # convert to a more functional sparse matrix
+    mx <- sparseMatrix(tdm$i, tdm$j, x=tdm$v, dimnames = tdm$dimnames)
+  
     # count the total number of occurances across the corpus
-    counts <- rowSums (as.matrix (tdm))
-    words <- data.table (phrase = names (counts), count = counts)
+    counts <- rowSums (mx)
+    words <- data.table (phrase = rownames (mx), count = counts)
 
     # previous word(s)
     words [, base_words := {
