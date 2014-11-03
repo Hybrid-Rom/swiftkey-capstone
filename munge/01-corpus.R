@@ -1,6 +1,6 @@
 
 # what percentage of the corpus should be kept for training?
-p <- 0.05
+p <- 0.10
 
 cache_if_missing ("corpus", {
     
@@ -16,4 +16,5 @@ cache_if_missing ("corpus", {
     corpus <- tm_map(corpus, content_transformer (tolower))
     corpus <- tm_map(corpus, removePunctuation)
     corpus <- tm_map(corpus, removeNumbers)
+    corpus <- tm_map(corpus, stemDocument, language = "english") 
 })
