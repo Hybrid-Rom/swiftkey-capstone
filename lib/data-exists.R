@@ -6,5 +6,5 @@
 #
 data.exists <- function (data.name) {
     stopifnot (is.character (data.name))
-    exists (data.name) && is.data.frame ( get (data.name))
+    exists (data.name) && !is.function ( get (data.name))
 }
