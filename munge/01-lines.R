@@ -1,6 +1,6 @@
 
 # what percentage of the corpus should be kept for training?
-keep <- 0.25
+keep <- 0.01
 
 # what percentage to use for the training data
 p <- 0.80
