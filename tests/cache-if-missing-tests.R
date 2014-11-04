@@ -4,7 +4,7 @@
 # remove any test data sets in memory
 delete <- ls (pattern = "test[0-9]+")
 if (length (delete) > 0)
-    rm (list = delete, envir = envir)
+    rm (list = delete)
 
 # remove any cached data files
 cleanup <- list.files ("cache", pattern = "test.*\\.RData", full.names = TRUE)
@@ -39,8 +39,18 @@ expect_false (file.exists ("cache/test5.RData"))
 cache_if_missing ("test5", { data.frame () })
 expect_true (file.exists ("cache/test5.RData"))
 
+
+cache_if_missing ("test5", { data.frame () })
+
 # clean-up
-cleanup ()
+# remove any test data sets in memory
+delete <- ls (pattern = "test[0-9]+")
+if (length (delete) > 0)
+  rm (list = delete)
+
+# remove any cached data files
+cleanup <- list.files ("cache", pattern = "test.*\\.RData", full.names = TRUE)
+file.remove (cleanup)
 
 
 
