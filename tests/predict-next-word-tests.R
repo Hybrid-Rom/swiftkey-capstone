@@ -1,5 +1,5 @@
 
-model <- data.table (base_words = c ("jack jumps high", "jumps high", "jumps", ""),
+model <- data.table (prev_words = c ("jack jumps high", "jumps high", "jumps", ""),
                      next_word  = c ("4gram", "3gram", "2gram", "1gram"),
                      count      = c (10, 10, 10, 10),
                      gram       = c (4, 3, 2, 1))

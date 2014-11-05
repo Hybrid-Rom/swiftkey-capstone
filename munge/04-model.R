@@ -17,14 +17,12 @@ cache_if_missing ("model", {
     model <- model [, list (
         next_word = next_word [which.max (count)], 
         count     = max (count)
-    ), by = base_words]
+    ), by = prev_words]
     
     # exclude any ngrams that occur less than the cut-off frequncy
     model <- model [ count >= cutoff ]
     
     # uni-gram, bi-gram or tri-gram?
-    model [, gram := sapply (strsplit (base_words, split = " "), length) + 1 ]
+    model [, gram := sapply (strsplit (prev_words, split = " "), length) + 1 ]
 })
-
-
 

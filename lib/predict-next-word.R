@@ -23,7 +23,7 @@ predict_next_word <- function (phrase, model, n = 3) {
       base <- tail (previous, i-1)
       base <- paste (base, collapse = " ")
       
-      prediction <- model [base_words == base, next_word]
+      prediction <- model [prev_words == base, next_word]
       if (length (prediction) > 0) {
         break
       }

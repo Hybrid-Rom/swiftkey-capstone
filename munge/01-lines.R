@@ -1,6 +1,6 @@
 
 # what percentage of the corpus should be kept for training?
-keep <- 0.01
+keep <- 0.35
 
 # what percentage to use for the training data
 p <- 0.80
@@ -12,11 +12,17 @@ cache_if_missing ("lines", {
   lines <- unlist (lapply (files, readLines))
   
   # sample the original input
+  message ("sampling ", percent (keep), " of original data")
   index <- as.logical (rbinom (n = length (lines), size = 1, prob = keep))
   lines <- lines [index]
 })
 
 # create a training and test set
+message ("allocating ", percent (p), " for training data")
 index <- as.logical (rbinom (n = length (lines), size = 1, prob = p))
 train.lines <- lines [ index]
 test.lines  <- lines [-index]
+
+# clean-up
+rm (lines)
+gc ()
