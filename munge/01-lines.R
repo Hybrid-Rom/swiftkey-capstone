@@ -1,9 +1,9 @@
 
 # what percentage of the corpus should be kept for training?
-keep <- 0.35
+keep <- 0.01
 
 # what percentage to use for the training data
-p <- 0.80
+p <- 0.95
 
 cache_if_missing ("lines", {
   
