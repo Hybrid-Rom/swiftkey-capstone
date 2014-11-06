@@ -1,21 +1,22 @@
 
-model <- data.table (prev_words = c ("jack jumps high", "jumps high", "jumps", ""),
-                     next_word  = c ("4gram", "3gram", "2gram", "1gram"),
-                     count      = c (10, 10, 10, 10),
-                     gram       = c (4, 3, 2, 1))
+# create a model for testing
+text <- c("Jack jumps highest of all.", "Jill falls down the hill.", "Jane rolls over the wall.")
+corpus <- create_corpus (text)
+tdm <- create_tdm (corpus, ngram_min = 1, ngram_max = 4)
+model <- create_model (tdm, cutoff = 0)
 
 # 4-gram model matches on a 4-gram
-expect_equal (predict_next_word ("jack jumps high", model, n = 4), "4gram")
+expect_equal (predict_next_word ("Bill falls down the", model, n = 4), "hill")
 
 # 4-gram model matches on a 3-gram
-expect_equal (predict_next_word ("fred jumps high", model, n = 4), "3gram")
+expect_equal (predict_next_word ("Who thought that Jill falls", model, n = 4), "down")
 
 # 4-gram model matches on a 2-gram
-expect_equal (predict_next_word ("fred jumps", model, n = 4), "2gram")
+expect_equal (predict_next_word ("Where does Jane", model, n = 4), "roll")
 
 # 4-gram model matches on a 1-gram
-expect_equal (predict_next_word ("fred skips high", model, n = 4), "1gram")
+expect_equal (predict_next_word ("Go drive", model, n = 4), "the")
 
-# 4-gram model would match on a 4-gram, but choose to only use 3-grams
-expect_equal (predict_next_word ("jack jumps high", model, n = 3), "3gram")
+# 4-gram model would match on a 4-gram, but specifically limited to 2-grams
+expect_equal (predict_next_word ("Bill falls down the", model, n = 2), "hill")
 
