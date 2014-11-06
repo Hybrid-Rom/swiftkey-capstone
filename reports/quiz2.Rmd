@@ -1,0 +1,149 @@
+---
+title: "Quiz 2"
+author: "Nick Allen"
+date: "November 6, 2014"
+output: html_document
+---
+
+### Question 1
+
+The guy in front of me just bought a pound of bacon, a bouquet, and a case of
+
+pretzels
+cheese
+beer
+soda
+
+```{r}
+q <- "The guy in front of me just bought a pound of bacon, a bouquet, and a case of"
+predict_next_word (q, model)
+```
+
+
+### Question 2
+
+You're the reason why I smile everyday. Can you follow me please? It would mean the
+
+universe
+best
+world
+most
+
+```{r}
+q <- "You're the reason why I smile everyday. Can you follow me please? It would mean the"
+predict_next_word (q, model)
+```
+
+### Question 3
+
+Hey sunshine, can you follow me and make me the
+
+happiest
+saddest
+smelliest
+bluest
+
+```{r}
+q <- "Hey sunshine, can you follow me and make me the"
+predict_next_word (q, model)
+```
+
+### Question 4
+
+Very early observations on the Bills game: Offense still struggling but the
+
+players
+referees
+defense
+crowd
+
+```{r}
+q <- "Very early observations on the Bills game: Offense still struggling but the"
+predict_next_word (q, model)
+```
+
+### Question 5
+
+Go on a romantic date at the
+
+grocery
+mall
+movies
+beach
+
+```{r}
+q <- "Go on a romantic date at the"
+predict_next_word (q, model)
+```
+
+### Question 6
+
+Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my
+
+way
+horse
+motorcycle
+phone
+
+```{r}
+q <- "Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my"
+predict_next_word (q, model)
+```
+
+### Question 7
+
+Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some
+
+years
+thing
+weeks
+time
+
+```{r}
+q <- "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
+predict_next_word (q, model)
+```
+
+### Question 8
+
+After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little
+
+eyes
+fingers
+toes
+ears
+
+```{r}
+q <- "After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little"
+predict_next_word (q, model)
+```
+
+### Question 9
+
+Be grateful for the good times and keep the faith during the
+
+hard
+sad
+bad
+worse
+
+```{r}
+q <- "Be grateful for the good times and keep the faith during the"
+predict_next_word (q, model)
+```
+
+### Question 10
+
+If this isn't the cutest thing you've ever seen, then you must be
+
+insensitive
+asleep
+callous
+insane
+
+```{r}
+q <- "If this isn't the cutest thing you've ever seen, then you must be"
+predict_next_word (q, model)
+```
+
+
