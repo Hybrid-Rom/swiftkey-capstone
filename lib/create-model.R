@@ -5,7 +5,8 @@
 create_model <- function (tdm, cutoff = 3) {
     
     # count the total number of occurances across the corpus
-    mx <- sparseMatrix(tdm$i, tdm$j, x=tdm$v, dimnames = tdm$dimnames)
+    dims <- c(train.tdm$nrow, train.tdm$ncol)
+    mx <- sparseMatrix(i=tdm$i, j=tdm$j, x=tdm$v, dims=dims, dimnames=tdm$dimnames)
     counts <- rowSums (mx)
     model <- data.table (phrase = rownames (mx), count = counts)
     
