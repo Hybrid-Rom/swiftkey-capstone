@@ -13,9 +13,13 @@ cache_if_missing ("test.phrases", {
     test.phrases <- test.phrases [ !duplicated (phrase) ]
     
     # place a hard limit on the number of test phrases
-    limit <- 3000
-    if (nrow (test.phrases > limit))
-        test.phrases <- test.phrases [1:limit]
+    limit <- 30000
+    if (nrow (test.phrases > limit)) {
+        
+        p <- limit / nrow (test.phrases)
+        index <- as.logical (rbinom (n = nrow (test.phrases), size = 1, prob = p))
+        test.phrases <- test.phrases [index]
+    }
     
     # split the test phrase into previous and next
     test.phrases [, prev_words := except_last_word (phrase), by = phrase]
