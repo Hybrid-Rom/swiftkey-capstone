@@ -29,7 +29,7 @@ predict_next_word <- function (phrase, model, n = 3) {
             
             prediction <- model [prev_words == base, next_word]
             if (length (prediction) > 0) {
-                message (sprintf ("%s-gram: '%s' -> '%s'", i, base, prediction))
+                #message (sprintf ("%s-gram: '%s' -> '%s'", i, base, prediction))
                 break
             }
         }
