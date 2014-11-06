@@ -25,6 +25,9 @@ cache_if_missing ("test.phrases", {
     test.phrases [, prev_words := except_last_word (phrase), by = phrase]
     test.phrases [, next_word := last_word (phrase), by = phrase]
     
+    # clean the "next_word" so that it can be compared to the model's prediction
+    test.phrases [, next_word := sapply (create_corpus (next_word), function (x) x$content)]
+    
     # use the model to predict the next word
     test.phrases [, next_word_hat := predict_next_word (prev_words, model), by = phrase]
     
