@@ -23,7 +23,10 @@ The guy in front of me just bought a pound of bacon, a bouquet, and a case of
 
 ```{r}
 q <- "The guy in front of me just bought a pound of bacon, a bouquet, and a case of"
-predict_next_word (q, model)
+phrase_probability (paste (q, "pretzels"), train.ngrams)
+phrase_probability (paste (q, "cheese"), train.ngrams)
+phrase_probability (paste (q, "beer"), train.ngrams)
+phrase_probability (paste (q, "soda"), train.ngrams)
 ```
 
 
@@ -38,7 +41,10 @@ You're the reason why I smile everyday. Can you follow me please? It would mean 
 
 ```{r}
 q <- "You're the reason why I smile everyday. Can you follow me please? It would mean the"
-predict_next_word (q, model)
+phrase_probability (paste (q, "universe"), train.ngrams)
+phrase_probability (paste (q, "best"), train.ngrams)
+phrase_probability (paste (q, "world"), train.ngrams)
+phrase_probability (paste (q, "most"), train.ngrams)
 ```
 
 ### Question 3
@@ -52,7 +58,10 @@ Hey sunshine, can you follow me and make me the
 
 ```{r}
 q <- "Hey sunshine, can you follow me and make me the"
-predict_next_word (q, model)
+phrase_probability (paste (q, "happiest"), train.ngrams)
+phrase_probability (paste (q, "saddest"), train.ngrams)
+phrase_probability (paste (q, "smelliest"), train.ngrams)
+phrase_probability (paste (q, "bluest"), train.ngrams)
 ```
 
 ### Question 4
@@ -66,7 +75,10 @@ Very early observations on the Bills game: Offense still struggling but the
 
 ```{r}
 q <- "Very early observations on the Bills game: Offense still struggling but the"
-predict_next_word (q, model)
+phrase_probability (paste (q, "players"), train.ngrams)
+phrase_probability (paste (q, "referees"), train.ngrams)
+phrase_probability (paste (q, "defense"), train.ngrams)
+phrase_probability (paste (q, "crowd"), train.ngrams)
 ```
 
 ### Question 5
@@ -80,7 +92,10 @@ Go on a romantic date at the
 
 ```{r}
 q <- "Go on a romantic date at the"
-predict_next_word (q, model)
+phrase_probability (paste (q, "grocery"), train.ngrams)
+phrase_probability (paste (q, "mall"), train.ngrams)
+phrase_probability (paste (q, "movies"), train.ngrams)
+phrase_probability (paste (q, "beach"), train.ngrams)
 ```
 
 ### Question 6
@@ -94,7 +109,10 @@ Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust the
 
 ```{r}
 q <- "Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my"
-predict_next_word (q, model)
+phrase_probability (paste (q, "way"), train.ngrams)
+phrase_probability (paste (q, "horse"), train.ngrams)
+phrase_probability (paste (q, "motorcycle"), train.ngrams)
+phrase_probability (paste (q, "phone"), train.ngrams)
 ```
 
 ### Question 7
@@ -108,7 +126,10 @@ Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite s
 
 ```{r}
 q <- "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
-predict_next_word (q, model)
+phrase_probability (paste (q, "years"), train.ngrams)
+phrase_probability (paste (q, "thing"), train.ngrams)
+phrase_probability (paste (q, "weeks"), train.ngrams)
+phrase_probability (paste (q, "time"), train.ngrams)
 ```
 
 ### Question 8
@@ -122,7 +143,10 @@ After the ice bucket challenge Louis will push his long wet hair out of his eyes
 
 ```{r}
 q <- "After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little"
-predict_next_word (q, model)
+phrase_probability (paste (q, "eyes"), train.ngrams)
+phrase_probability (paste (q, "fingers"), train.ngrams)
+phrase_probability (paste (q, "toes"), train.ngrams)
+phrase_probability (paste (q, "ears"), train.ngrams)
 ```
 
 ### Question 9
@@ -136,7 +160,10 @@ Be grateful for the good times and keep the faith during the
 
 ```{r}
 q <- "Be grateful for the good times and keep the faith during the"
-predict_next_word (q, model)
+phrase_probability (paste (q, "hard"), train.ngrams)
+phrase_probability (paste (q, "sad"), train.ngrams)
+phrase_probability (paste (q, "bad"), train.ngrams)
+phrase_probability (paste (q, "worse"), train.ngrams)
 ```
 
 ### Question 10
@@ -150,7 +177,10 @@ If this isn't the cutest thing you've ever seen, then you must be
 
 ```{r}
 q <- "If this isn't the cutest thing you've ever seen, then you must be"
-predict_next_word (q, model)
+phrase_probability (paste (q, "insensitive"), train.ngrams)
+phrase_probability (paste (q, "asleep"), train.ngrams)
+phrase_probability (paste (q, "callous"), train.ngrams)
+phrase_probability (paste (q, "insane"), train.ngrams)
 ```
 
 
