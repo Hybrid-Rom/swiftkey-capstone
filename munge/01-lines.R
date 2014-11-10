@@ -9,7 +9,7 @@ cache_if_missing ("lines", {
   
   # create a corpus from the text input
   files <- list.files ("data/en_US/", pattern = "\\.txt$", full.names = TRUE)
-  lines <- unlist (lapply (files, readLines))
+  lines <- unlist (lapply (files, readLines, skipNul = TRUE))
   
   # sample the original input
   message ("sampling ", percent (keep), " of original data")
