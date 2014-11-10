@@ -1,29 +1,23 @@
 
 #
-# creates an n-gram model given a tdm
+# creates an n-gram model given a data set containing ngrams
 #
-create_model <- function (tdm, cutoff = 3) {
-    
-    # count the total number of occurances across the corpus
-    dims <- c(train.tdm$nrow, train.tdm$ncol)
-    mx <- sparseMatrix(i=tdm$i, j=tdm$j, x=tdm$v, dims=dims, dimnames=tdm$dimnames)
-    counts <- rowSums (mx)
-    model <- data.table (phrase = rownames (mx), count = counts)
-    
-    # split the phrase into previous and next
-    model [, prev_words := except_last_word (phrase), by = phrase]
-    model [, next_word := last_word (phrase), by = phrase]
-    
-    # keep only the most frequently occuring prev_word for each base_word
-    model <- model [, list (
-        next_word = next_word [which.max (count)], 
-        count     = max (count)
-    ), by = prev_words]
-    
-    # exclude any ngrams that occur less than the cut-off frequncy
-    model <- model [ count >= cutoff ]
-    
-    # uni-gram, bi-gram or tri-gram?
-    model [, gram := sapply (strsplit (prev_words, split = " "), length) + 1 ]
-    
+create_model <- function (ngrams, cutoff = 1) {
+  
+  # extract the context and the next word from each ngram
+  model <- ngrams [, list (
+    context = except_last_word (phrase),
+    word    = last_word (phrase)
+  ), by = list (phrase, n, count) ]
+  
+  # for each context, keep only the most frequently occuring next word
+  model <- model [, list (
+    word  = word [which.max (count)], 
+    count = max (count)
+  ), by = context ]
+  
+  # exclude any ngrams that occur less than the cut-off frequncy
+  model <- model [ count >= cutoff ]
+  
+  return (model)
 }

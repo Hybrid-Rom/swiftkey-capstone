@@ -8,9 +8,8 @@ predict_next_word <- function (phrase, model, n = 3) {
     stopifnot (is.character (phrase))
     stopifnot (length (phrase) == 1)
     
-    # uses 'create_corpus' to apply all of the same pre-processing on the 
-    # input phrase as was applied to the training data
-    clean_phrase <- sapply (create_corpus (phrase), function (x) x$content)
+    # clean the input phrase
+    clean_phrase <- clean_sentences (phrase)
     
     # break the sentence into its component words
     previous <- unlist (strsplit (clean_phrase, split = " ", fixed = TRUE))
@@ -24,12 +23,12 @@ predict_next_word <- function (phrase, model, n = 3) {
         if (len >= i-1) {
             
             # grab the last 'i-1' words
-            base <- tail (previous, i-1)
-            base <- paste (base, collapse = " ")
+            ctx <- tail (previous, i-1)
+            ctx <- paste (ctx, collapse = " ")
             
-            prediction <- model [prev_words == base, next_word]
+            prediction <- model [context == ctx, word]
             if (length (prediction) > 0) {
-                #message (sprintf ("%s-gram: '%s' -> '%s'", i, base, prediction))
+                #message (sprintf ("%s-gram: '%s' -> '%s'", i, ctx, prediction))
                 break
             }
         }

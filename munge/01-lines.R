@@ -8,7 +8,7 @@ p <- 0.95
 cache_if_missing ("lines", {
   
   # create a corpus from the text input
-  files <- list.files ("data/en_US/", pattern = "\\.txt$", full.names = TRUE)
+  files <- list.files ("data/en_US", pattern = "\\.txt$", full.names = TRUE)
   lines <- unlist (lapply (files, readLines, skipNul = TRUE))
   
   # sample the original input
