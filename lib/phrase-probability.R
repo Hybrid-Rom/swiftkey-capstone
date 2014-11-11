@@ -25,7 +25,6 @@ phrase_probability <- function (phr, ngrams, models = 1:3, model_weights = 1:3) 
         # calculate the phrase probability; p1*p2 = exp (log (p1) + log (p2))
         exp (sum (phr_probs))  
     })
-    message (paste (models, "gram = ", percent (probs), collapse = " "))
     
     # interpolated model - weight the probability from each model according to the given weights    
     weighted.mean (probs, model_weights)
