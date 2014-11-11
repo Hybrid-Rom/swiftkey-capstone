@@ -21,12 +21,12 @@ The guy in front of me just bought a pound of bacon, a bouquet, and a case of
 * beer
 * soda
 
-```{r}
+```{r, warning=FALSE}
 q <- "The guy in front of me just bought a pound of bacon, a bouquet, and a case of"
-phrase_probability (paste (q, "pretzels"), train.ngrams)
-phrase_probability (paste (q, "cheese"), train.ngrams)
-phrase_probability (paste (q, "beer"), train.ngrams)
-phrase_probability (paste (q, "soda"), train.ngrams)
+phrase_probability (paste (q, "pretzels"), ngrams)
+phrase_probability (paste (q, "cheese"), ngrams)
+phrase_probability (paste (q, "beer"), ngrams)
+phrase_probability (paste (q, "soda"), ngrams)
 ```
 
 
@@ -39,12 +39,12 @@ You're the reason why I smile everyday. Can you follow me please? It would mean 
 * world
 * most
 
-```{r}
+```{r, warning=FALSE}
 q <- "You're the reason why I smile everyday. Can you follow me please? It would mean the"
-phrase_probability (paste (q, "universe"), train.ngrams)
-phrase_probability (paste (q, "best"), train.ngrams)
-phrase_probability (paste (q, "world"), train.ngrams)
-phrase_probability (paste (q, "most"), train.ngrams)
+phrase_probability (paste (q, "universe"), ngrams)
+phrase_probability (paste (q, "best"), ngrams)
+phrase_probability (paste (q, "world"), ngrams)
+phrase_probability (paste (q, "most"), ngrams)
 ```
 
 ### Question 3
@@ -56,12 +56,12 @@ Hey sunshine, can you follow me and make me the
 * smelliest
 * bluest
 
-```{r}
+```{r, warning=FALSE}
 q <- "Hey sunshine, can you follow me and make me the"
-phrase_probability (paste (q, "happiest"), train.ngrams)
-phrase_probability (paste (q, "saddest"), train.ngrams)
-phrase_probability (paste (q, "smelliest"), train.ngrams)
-phrase_probability (paste (q, "bluest"), train.ngrams)
+phrase_probability (paste (q, "happiest"), ngrams)
+phrase_probability (paste (q, "saddest"), ngrams)
+phrase_probability (paste (q, "smelliest"), ngrams)
+phrase_probability (paste (q, "bluest"), ngrams)
 ```
 
 ### Question 4
@@ -73,12 +73,12 @@ Very early observations on the Bills game: Offense still struggling but the
 * defense
 * crowd
 
-```{r}
+```{r, warning=FALSE}
 q <- "Very early observations on the Bills game: Offense still struggling but the"
-phrase_probability (paste (q, "players"), train.ngrams)
-phrase_probability (paste (q, "referees"), train.ngrams)
-phrase_probability (paste (q, "defense"), train.ngrams)
-phrase_probability (paste (q, "crowd"), train.ngrams)
+phrase_probability (paste (q, "players"), ngrams)
+phrase_probability (paste (q, "referees"), ngrams)
+phrase_probability (paste (q, "defense"), ngrams)
+phrase_probability (paste (q, "crowd"), ngrams)
 ```
 
 ### Question 5
@@ -90,12 +90,12 @@ Go on a romantic date at the
 * movies
 * beach
 
-```{r}
+```{r, warning=FALSE}
 q <- "Go on a romantic date at the"
-phrase_probability (paste (q, "grocery"), train.ngrams)
-phrase_probability (paste (q, "mall"), train.ngrams)
-phrase_probability (paste (q, "movies"), train.ngrams)
-phrase_probability (paste (q, "beach"), train.ngrams)
+phrase_probability (paste (q, "grocery"), ngrams)
+phrase_probability (paste (q, "mall"), ngrams)
+phrase_probability (paste (q, "movies"), ngrams)
+phrase_probability (paste (q, "beach"), ngrams)
 ```
 
 ### Question 6
@@ -107,12 +107,12 @@ Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust the
 * motorcycle
 * phone
 
-```{r}
+```{r, warning=FALSE}
 q <- "Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my"
-phrase_probability (paste (q, "way"), train.ngrams)
-phrase_probability (paste (q, "horse"), train.ngrams)
-phrase_probability (paste (q, "motorcycle"), train.ngrams)
-phrase_probability (paste (q, "phone"), train.ngrams)
+phrase_probability (paste (q, "way"), ngrams)
+phrase_probability (paste (q, "horse"), ngrams)
+phrase_probability (paste (q, "motorcycle"), ngrams)
+phrase_probability (paste (q, "phone"), ngrams)
 ```
 
 ### Question 7
@@ -124,12 +124,12 @@ Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite s
 * weeks
 * time
 
-```{r}
+```{r, warning=FALSE}
 q <- "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
-phrase_probability (paste (q, "years"), train.ngrams)
-phrase_probability (paste (q, "thing"), train.ngrams)
-phrase_probability (paste (q, "weeks"), train.ngrams)
-phrase_probability (paste (q, "time"), train.ngrams)
+phrase_probability (paste (q, "years"), ngrams)
+phrase_probability (paste (q, "thing"), ngrams)
+phrase_probability (paste (q, "weeks"), ngrams)
+phrase_probability (paste (q, "time"), ngrams)
 ```
 
 ### Question 8
@@ -141,12 +141,12 @@ After the ice bucket challenge Louis will push his long wet hair out of his eyes
 * toes
 * ears
 
-```{r}
+```{r, warning=FALSE}
 q <- "After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little"
-phrase_probability (paste (q, "eyes"), train.ngrams)
-phrase_probability (paste (q, "fingers"), train.ngrams)
-phrase_probability (paste (q, "toes"), train.ngrams)
-phrase_probability (paste (q, "ears"), train.ngrams)
+phrase_probability (paste (q, "eyes"), ngrams)
+phrase_probability (paste (q, "fingers"), ngrams)
+phrase_probability (paste (q, "toes"), ngrams)
+phrase_probability (paste (q, "ears"), ngrams)
 ```
 
 ### Question 9
@@ -158,12 +158,12 @@ Be grateful for the good times and keep the faith during the
 * bad
 * worse
 
-```{r}
+```{r, warning=FALSE}
 q <- "Be grateful for the good times and keep the faith during the"
-phrase_probability (paste (q, "hard"), train.ngrams)
-phrase_probability (paste (q, "sad"), train.ngrams)
-phrase_probability (paste (q, "bad"), train.ngrams)
-phrase_probability (paste (q, "worse"), train.ngrams)
+phrase_probability (paste (q, "hard"), ngrams)
+phrase_probability (paste (q, "sad"), ngrams)
+phrase_probability (paste (q, "bad"), ngrams)
+phrase_probability (paste (q, "worse"), ngrams)
 ```
 
 ### Question 10
@@ -175,12 +175,12 @@ If this isn't the cutest thing you've ever seen, then you must be
 * callous
 * insane
 
-```{r}
+```{r, warning=FALSE}
 q <- "If this isn't the cutest thing you've ever seen, then you must be"
-phrase_probability (paste (q, "insensitive"), train.ngrams)
-phrase_probability (paste (q, "asleep"), train.ngrams)
-phrase_probability (paste (q, "callous"), train.ngrams)
-phrase_probability (paste (q, "insane"), train.ngrams)
+phrase_probability (paste (q, "insensitive"), ngrams)
+phrase_probability (paste (q, "asleep"), ngrams)
+phrase_probability (paste (q, "callous"), ngrams)
+phrase_probability (paste (q, "insane"), ngrams)
 ```
 
 

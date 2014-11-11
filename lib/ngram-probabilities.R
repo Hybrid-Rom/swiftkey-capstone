@@ -15,22 +15,23 @@
 #  context = love you
 #
 ngram_probabilities <- function (ngrams) {
-
-  # create a data set that contains the number of times each context occurs in the text
-  context <- ngrams [, sum (phrase_count), by = context]
-  setnames (context, c("context", "context_count"))
+    message (sprintf ("calculating %s %s-gram probabilities", comma (nrow (ngrams)), n))
     
-  # through merging, add the context count to the model
-  setkeyv (context, "context")
-  setkeyv (ngrams, "context")
-  ngrams [context, context_count := context_count, allow.cartesian=TRUE]
-  
-  # calculate the maximum liklihood estimate 
-  ngrams [, p    := phrase_count / context_count ]
-  
-  # storing log (p) makes calculating phrase probability easier
-  ngrams [, logp := log (p) ]
-  
-  # probabilities calculated in-place
-  return (NULL)
+    # create a data set that contains the number of times each context occurs in the text
+    context <- ngrams [, sum (phrase_count), by = context]
+    setnames (context, c("context", "context_count"))
+    
+    # through merging, add the context count to the model
+    setkeyv (context, "context")
+    setkeyv (ngrams, "context")
+    ngrams [context, context_count := context_count, allow.cartesian=TRUE]
+    
+    # calculate the maximum liklihood estimate 
+    ngrams [, p := phrase_count / context_count ]
+    
+    # storing log (p) makes calculating phrase probability easier
+    ngrams [, logp := log (p) ]
+    
+    # probabilities calculated in-place
+    return (NULL)
 }
