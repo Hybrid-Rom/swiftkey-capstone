@@ -2,7 +2,7 @@
 # # creates a holdout test data set for scoring the model
 # #
 # 
-# cache_if_missing ("test.phrases", {
+# cache ("test.phrases", {
 #     
 #     # place a hard limit on the number of test phrases
 #     limit <- 30000

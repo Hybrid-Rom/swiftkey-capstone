@@ -4,7 +4,7 @@
 #
 
 
-cache_if_missing ("train.ngrams", {
+cache ("train.ngrams", {
   
   # extract all 1, 2, and 3-grams
   train.ngrams <- create_ngrams (train.sentences, 1, 3)
@@ -14,7 +14,7 @@ cache_if_missing ("train.ngrams", {
 })
 
 
-cache_if_missing ("test.ngrams",  {
+cache ("test.ngrams",  {
 
   # for testing purposes, extract 4-grams only. the first 3 words provide the 
   # context, then the 4th word is predicted

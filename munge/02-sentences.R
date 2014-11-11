@@ -3,7 +3,7 @@
 # and pre-process each sentence.
 #
 
-cache_if_missing ("train.sentences", {
+cache ("train.sentences", {
   
   # split the training data into sentences
   sentences <- split_sentences (train.lines)
@@ -12,7 +12,7 @@ cache_if_missing ("train.sentences", {
   sentences <- clean_sentences (sentences)
 })
 
-cache_if_missing ("test.sentences", { 
+cache ("test.sentences", { 
   
   # split the holdout test data into sentences
   split_sentences (test.lines)

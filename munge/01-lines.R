@@ -5,7 +5,7 @@ keep <- 0.15
 # what percentage to use for the training data
 p <- 0.95
 
-cache_if_missing ("lines", {
+cache ("lines", {
   
   # create a corpus from the text input
   files <- list.files ("data/en_US/", pattern = "\\.txt$", full.names = TRUE)
@@ -20,5 +20,5 @@ cache_if_missing ("lines", {
 # create and cache a training and test set
 message ("allocating ", percent (p), " for training data")
 index <- as.logical (rbinom (n = length (lines), size = 1, prob = p))
-cache_if_missing ("train.lines", lines [ index])
-cache_if_missing ("test.lines",  lines [!index])
+cache ("train.lines", lines [ index])
+cache ("test.lines",  lines [!index])
