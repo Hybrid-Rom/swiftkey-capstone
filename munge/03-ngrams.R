@@ -21,4 +21,4 @@ cache ("ngrams", {
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 
 # context, then the 4th word is predicted
-cache ("test.ngrams",  create_ngrams (test.sentences, 4, 4))
+cache ("test.ngrams",  create_ngrams (test.sentences, 4))
