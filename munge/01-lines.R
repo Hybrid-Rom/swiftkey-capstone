@@ -1,10 +1,4 @@
 
-# what percentage of the corpus should be kept for training?
-keep <- 0.15
-
-# what percentage to use for the training data
-p <- 0.95
-
 cache ("lines", {
   
   # create a corpus from the text input
@@ -12,13 +6,13 @@ cache ("lines", {
   lines <- unlist (lapply (files, readLines, skipNul = TRUE))
   
   # sample the original input
-  message ("sampling ", percent (keep), " of original data")
-  index <- as.logical (rbinom (n = length (lines), size = 1, prob = keep))
+  message ("sampling ", percent (input.p), " of original data")
+  index <- as.logical (rbinom (n = length (lines), size = 1, prob = input.p))
   lines <- lines [index]
 })
 
 # create and cache a training and test set
-message ("allocating ", percent (p), " for training data")
-index <- as.logical (rbinom (n = length (lines), size = 1, prob = p))
+message ("allocating ", percent (train.p), " for training data")
+index <- as.logical (rbinom (n = length (lines), size = 1, prob = train.p))
 cache ("train.lines", lines [ index])
 cache ("test.lines",  lines [!index])
