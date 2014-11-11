@@ -6,11 +6,13 @@
 
 cache ("train.ngrams", {
   
-  # extract all 1, 2, and 3-grams
-  train.ngrams <- create_ngrams (train.sentences, 1, 3)
+  # create the unigrams
+  unigrams <- create_ngrams (train.sentences, 1)
+  ngram_probabilities (unigrams, length (train.sentences))  
   
-  # calculate the probability of each
-  ngram_probabilities (train.ngrams, length (train.sentences))  
+  # create the bigrams
+  bigrams <- create_ngrams (train.sentences, 2)
+  ngram_probabilities (bigrams, length (train.sentences)) 
 })
 
 
