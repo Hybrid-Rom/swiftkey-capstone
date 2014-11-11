@@ -2,9 +2,6 @@
 #
 # calculates the probability of a phrase using multiple n-gram models
 #
-# p (we love you) = p (we) * p (love | we) * p (you | love)
-#
-#
 phrase_probability <- function (phr, ngrams, models = 1:3, model_weights = 1:3) {
     
     clean_phrase <- clean_sentences (phr)
@@ -26,7 +23,7 @@ phrase_probability <- function (phr, ngrams, models = 1:3, model_weights = 1:3) 
         exp (sum (phr_probs))  
     })
     
-    # interpolated model - weight the probability from each model according to the given weights    
-    weighted.mean (probs, model_weights)
+    # ignore any model that returns a 0 probability; average the remainder
+    mean (probs [probs > 0])
 }
 
