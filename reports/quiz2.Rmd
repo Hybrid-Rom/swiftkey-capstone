@@ -18,7 +18,7 @@ The guy in front of me just bought a pound of bacon, a bouquet, and a case of
 
 * pretzels
 * cheese
-* beer
+* (A) beer
 * soda
 
 ```{r, warning=FALSE}
@@ -36,7 +36,7 @@ You're the reason why I smile everyday. Can you follow me please? It would mean 
 
 * universe
 * best
-* world
+* (A) world
 * most
 
 ```{r, warning=FALSE}
@@ -51,7 +51,7 @@ phrase_probability (paste (q, "most"), ngrams)
 
 Hey sunshine, can you follow me and make me the
 
-* happiest
+* (A) happiest
 * saddest
 * smelliest
 * bluest
@@ -71,7 +71,7 @@ Very early observations on the Bills game: Offense still struggling but the
 * players
 * referees
 * defense
-* crowd
+* (A) crowd
 
 ```{r, warning=FALSE}
 q <- "Very early observations on the Bills game: Offense still struggling but the"
@@ -88,7 +88,7 @@ Go on a romantic date at the
 * grocery
 * mall
 * movies
-* beach
+* (A) beach
 
 ```{r, warning=FALSE}
 q <- "Go on a romantic date at the"
@@ -102,7 +102,7 @@ phrase_probability (paste (q, "beach"), ngrams)
 
 Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my
 
-* way
+* (A) way
 * horse
 * motorcycle
 * phone
@@ -122,7 +122,7 @@ Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite s
 * years
 * thing
 * weeks
-* time
+* (A) time
 
 ```{r, warning=FALSE}
 q <- "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
@@ -137,7 +137,7 @@ phrase_probability (paste (q, "time"), ngrams)
 After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little
 
 * eyes
-* fingers
+* (A) fingers
 * toes
 * ears
 
@@ -153,7 +153,7 @@ phrase_probability (paste (q, "ears"), ngrams)
 
 Be grateful for the good times and keep the faith during the
 
-* hard
+* (A) hard
 * sad
 * bad
 * worse
@@ -173,7 +173,7 @@ If this isn't the cutest thing you've ever seen, then you must be
 * insensitive
 * asleep
 * callous
-* insane
+* (A) insane
 
 ```{r, warning=FALSE}
 q <- "If this isn't the cutest thing you've ever seen, then you must be"
