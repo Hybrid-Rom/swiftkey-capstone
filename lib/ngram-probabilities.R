@@ -15,7 +15,7 @@
 #  context = love you
 #
 ngram_probabilities <- function (ngrams) {
-    message (sprintf ("calculating %s %s-gram probabilities", comma (nrow (ngrams)), n))
+    message (sprintf ("calculating %s ngram probabilities", comma (nrow (ngrams))))
     
     # create a data set that contains the number of times each context occurs in the text
     context <- ngrams [, sum (phrase_count), by = context]
