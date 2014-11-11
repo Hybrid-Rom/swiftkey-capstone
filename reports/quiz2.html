@@ -64,12 +64,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <ul>
 <li>pretzels</li>
 <li>cheese</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>beer</li>
+</ol></li>
 <li>soda</li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;The guy in front of me just bought a pound of bacon, a bouquet, and a case of&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;the&quot;</code></pre>
+
+p &lt;- list (pretzels = phrase_probability (paste (q, &quot;pretzels&quot;), ngrams),
+           cheese   = phrase_probability (paste (q, &quot;cheese&quot;), ngrams),
+           beer     = phrase_probability (paste (q, &quot;beer&quot;), ngrams),
+           soda     = phrase_probability (paste (q, &quot;soda&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $pretzels
+## [1] 8.975197e-47</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
@@ -77,25 +86,43 @@ predict_next_word (q, model)</code></pre>
 <ul>
 <li>universe</li>
 <li>best</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>world</li>
+</ol></li>
 <li>most</li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;You're the reason why I smile everyday. Can you follow me please? It would mean the&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;world&quot;</code></pre>
+
+p &lt;- list (universe = phrase_probability (paste (q, &quot;universe&quot;), ngrams),
+           best     = phrase_probability (paste (q, &quot;best&quot;), ngrams),
+           world    = phrase_probability (paste (q, &quot;world&quot;), ngrams),
+           most     = phrase_probability (paste (q, &quot;most&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $universe
+## [1] 3.693487e-40</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
 <p>Hey sunshine, can you follow me and make me the</p>
 <ul>
+<li><ol style="list-style-type: upper-alpha">
 <li>happiest</li>
+</ol></li>
 <li>saddest</li>
 <li>smelliest</li>
 <li>bluest</li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;Hey sunshine, can you follow me and make me the&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;most&quot;</code></pre>
+
+p &lt;- list (happiest = phrase_probability (paste (q, &quot;happiest&quot;), ngrams),
+           saddest = phrase_probability (paste (q, &quot;saddest&quot;), ngrams),
+           smelliest = phrase_probability (paste (q, &quot;smelliest&quot;), ngrams),
+           bluest = phrase_probability (paste (q, &quot;bluest&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $smelliest
+## [1] 2.394939e-38</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
@@ -104,11 +131,20 @@ predict_next_word (q, model)</code></pre>
 <li>players</li>
 <li>referees</li>
 <li>defense</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>crowd</li>
+</ol></li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;Very early observations on the Bills game: Offense still struggling but the&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;real&quot;</code></pre>
+
+p &lt;- list (players = phrase_probability (paste (q, &quot;players&quot;), ngrams),
+           referees = phrase_probability (paste (q, &quot;referees&quot;), ngrams),
+           defense = phrase_probability (paste (q, &quot;defense&quot;), ngrams),
+           crowd = phrase_probability (paste (q, &quot;crowd&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $referees
+## [1] 1.997572e-48</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -117,24 +153,42 @@ predict_next_word (q, model)</code></pre>
 <li>grocery</li>
 <li>mall</li>
 <li>movies</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>beach</li>
+</ol></li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;Go on a romantic date at the&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;end&quot;</code></pre>
+
+p &lt;- list (grocery = phrase_probability (paste (q, &quot;grocery&quot;), ngrams),
+           mall = phrase_probability (paste (q, &quot;mall&quot;), ngrams),
+           movies = phrase_probability (paste (q, &quot;movies&quot;), ngrams),
+           beach = phrase_probability (paste (q, &quot;beach&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $grocery
+## [1] 2.170729e-20</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
 <p>Well I’m pretty sure my granny has some old bagpipes in her garage I’ll dust them off and be on my</p>
 <ul>
+<li><ol style="list-style-type: upper-alpha">
 <li>way</li>
+</ol></li>
 <li>horse</li>
 <li>motorcycle</li>
 <li>phone</li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;way&quot;</code></pre>
+
+p &lt;- list (way = phrase_probability (paste (q, &quot;way&quot;), ngrams),
+           horse = phrase_probability (paste (q, &quot;horse&quot;), ngrams),
+           motorcyle = phrase_probability (paste (q, &quot;motorcycle&quot;), ngrams),
+           phone = phrase_probability (paste (q, &quot;phone&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $motorcyle
+## [1] 5.207295e-79</code></pre>
 </div>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
@@ -143,37 +197,64 @@ predict_next_word (q, model)</code></pre>
 <li>years</li>
 <li>thing</li>
 <li>weeks</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>time</li>
+</ol></li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;time&quot;</code></pre>
+
+p &lt;- list(years = phrase_probability (paste (q, &quot;years&quot;), ngrams),
+          thing = phrase_probability (paste (q, &quot;thing&quot;), ngrams),
+          weeks = phrase_probability (paste (q, &quot;weeks&quot;), ngrams),
+          time = phrase_probability (paste (q, &quot;time&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $years
+## [1] 0</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
 <p>After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little</p>
 <ul>
 <li>eyes</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>fingers</li>
+</ol></li>
 <li>toes</li>
 <li>ears</li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;head&quot;</code></pre>
+
+p &lt;- list (eyes = phrase_probability (paste (q, &quot;eyes&quot;), ngrams),
+           fingers = phrase_probability (paste (q, &quot;fingers&quot;), ngrams),
+           toes = phrase_probability (paste (q, &quot;toes&quot;), ngrams),
+           ears = phrase_probability (paste (q, &quot;ears&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $toes
+## [1] 5.349055e-70</code></pre>
 </div>
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
 <p>Be grateful for the good times and keep the faith during the</p>
 <ul>
+<li><ol style="list-style-type: upper-alpha">
 <li>hard</li>
+</ol></li>
 <li>sad</li>
 <li>bad</li>
 <li>worse</li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;Be grateful for the good times and keep the faith during the&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;day&quot;</code></pre>
+
+p &lt;- list (hard = phrase_probability (paste (q, &quot;hard&quot;), ngrams),
+           sad = phrase_probability (paste (q, &quot;sad&quot;), ngrams),
+           bad = phrase_probability (paste (q, &quot;bad&quot;), ngrams),
+           worse = phrase_probability (paste (q, &quot;worse&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $sad
+## [1] 1.123542e-30</code></pre>
 </div>
 <div id="question-10" class="section level3">
 <h3>Question 10</h3>
@@ -182,11 +263,20 @@ predict_next_word (q, model)</code></pre>
 <li>insensitive</li>
 <li>asleep</li>
 <li>callous</li>
+<li><ol style="list-style-type: upper-alpha">
 <li>insane</li>
+</ol></li>
 </ul>
 <pre class="r"><code>q &lt;- &quot;If this isn't the cutest thing you've ever seen, then you must be&quot;
-predict_next_word (q, model)</code></pre>
-<pre><code>## [1] &quot;a&quot;</code></pre>
+
+p &lt;- list (insensitive = phrase_probability (paste (q, &quot;insensitive&quot;), ngrams),
+           asleep = phrase_probability (paste (q, &quot;asleep&quot;), ngrams),
+           callous = phrase_probability (paste (q, &quot;callous&quot;), ngrams),
+           insance = phrase_probability (paste (q, &quot;insane&quot;), ngrams))
+
+p [which.min (p)]</code></pre>
+<pre><code>## $callous
+## [1] 8.601989e-54</code></pre>
 </div>
 
 

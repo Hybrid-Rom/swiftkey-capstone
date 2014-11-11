@@ -5,12 +5,14 @@ date: "November 6, 2014"
 output: html_document
 ---
 
-```{r, echo=FALSE, message=FALSE, results='hide'}
+```{r, echo=FALSE, message=FALSE, results='hide', include=FALSE}
 setwd ("..")
 library (ProjectTemplate)
+library (knitr)
 load.project ()
-```
 
+opts_chunk$set(warning=FALSE, message=FALSE)
+```
 
 ### Question 1
 
@@ -23,10 +25,13 @@ The guy in front of me just bought a pound of bacon, a bouquet, and a case of
 
 ```{r, warning=FALSE}
 q <- "The guy in front of me just bought a pound of bacon, a bouquet, and a case of"
-phrase_probability (paste (q, "pretzels"), ngrams)
-phrase_probability (paste (q, "cheese"), ngrams)
-phrase_probability (paste (q, "beer"), ngrams)
-phrase_probability (paste (q, "soda"), ngrams)
+
+p <- list (pretzels = phrase_probability (paste (q, "pretzels"), ngrams),
+           cheese   = phrase_probability (paste (q, "cheese"), ngrams),
+           beer     = phrase_probability (paste (q, "beer"), ngrams),
+           soda     = phrase_probability (paste (q, "soda"), ngrams))
+
+p [which.min (p)]
 ```
 
 
@@ -41,10 +46,13 @@ You're the reason why I smile everyday. Can you follow me please? It would mean 
 
 ```{r, warning=FALSE}
 q <- "You're the reason why I smile everyday. Can you follow me please? It would mean the"
-phrase_probability (paste (q, "universe"), ngrams)
-phrase_probability (paste (q, "best"), ngrams)
-phrase_probability (paste (q, "world"), ngrams)
-phrase_probability (paste (q, "most"), ngrams)
+
+p <- list (universe = phrase_probability (paste (q, "universe"), ngrams),
+           best     = phrase_probability (paste (q, "best"), ngrams),
+           world    = phrase_probability (paste (q, "world"), ngrams),
+           most     = phrase_probability (paste (q, "most"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 3
@@ -58,10 +66,13 @@ Hey sunshine, can you follow me and make me the
 
 ```{r, warning=FALSE}
 q <- "Hey sunshine, can you follow me and make me the"
-phrase_probability (paste (q, "happiest"), ngrams)
-phrase_probability (paste (q, "saddest"), ngrams)
-phrase_probability (paste (q, "smelliest"), ngrams)
-phrase_probability (paste (q, "bluest"), ngrams)
+
+p <- list (happiest = phrase_probability (paste (q, "happiest"), ngrams),
+           saddest = phrase_probability (paste (q, "saddest"), ngrams),
+           smelliest = phrase_probability (paste (q, "smelliest"), ngrams),
+           bluest = phrase_probability (paste (q, "bluest"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 4
@@ -75,10 +86,13 @@ Very early observations on the Bills game: Offense still struggling but the
 
 ```{r, warning=FALSE}
 q <- "Very early observations on the Bills game: Offense still struggling but the"
-phrase_probability (paste (q, "players"), ngrams)
-phrase_probability (paste (q, "referees"), ngrams)
-phrase_probability (paste (q, "defense"), ngrams)
-phrase_probability (paste (q, "crowd"), ngrams)
+
+p <- list (players = phrase_probability (paste (q, "players"), ngrams),
+           referees = phrase_probability (paste (q, "referees"), ngrams),
+           defense = phrase_probability (paste (q, "defense"), ngrams),
+           crowd = phrase_probability (paste (q, "crowd"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 5
@@ -92,10 +106,13 @@ Go on a romantic date at the
 
 ```{r, warning=FALSE}
 q <- "Go on a romantic date at the"
-phrase_probability (paste (q, "grocery"), ngrams)
-phrase_probability (paste (q, "mall"), ngrams)
-phrase_probability (paste (q, "movies"), ngrams)
-phrase_probability (paste (q, "beach"), ngrams)
+
+p <- list (grocery = phrase_probability (paste (q, "grocery"), ngrams),
+           mall = phrase_probability (paste (q, "mall"), ngrams),
+           movies = phrase_probability (paste (q, "movies"), ngrams),
+           beach = phrase_probability (paste (q, "beach"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 6
@@ -109,10 +126,13 @@ Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust the
 
 ```{r, warning=FALSE}
 q <- "Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my"
-phrase_probability (paste (q, "way"), ngrams)
-phrase_probability (paste (q, "horse"), ngrams)
-phrase_probability (paste (q, "motorcycle"), ngrams)
-phrase_probability (paste (q, "phone"), ngrams)
+
+p <- list (way = phrase_probability (paste (q, "way"), ngrams),
+           horse = phrase_probability (paste (q, "horse"), ngrams),
+           motorcyle = phrase_probability (paste (q, "motorcycle"), ngrams),
+           phone = phrase_probability (paste (q, "phone"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 7
@@ -126,10 +146,13 @@ Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite s
 
 ```{r, warning=FALSE}
 q <- "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
-phrase_probability (paste (q, "years"), ngrams)
-phrase_probability (paste (q, "thing"), ngrams)
-phrase_probability (paste (q, "weeks"), ngrams)
-phrase_probability (paste (q, "time"), ngrams)
+
+p <- list(years = phrase_probability (paste (q, "years"), ngrams),
+          thing = phrase_probability (paste (q, "thing"), ngrams),
+          weeks = phrase_probability (paste (q, "weeks"), ngrams),
+          time = phrase_probability (paste (q, "time"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 8
@@ -143,10 +166,13 @@ After the ice bucket challenge Louis will push his long wet hair out of his eyes
 
 ```{r, warning=FALSE}
 q <- "After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little"
-phrase_probability (paste (q, "eyes"), ngrams)
-phrase_probability (paste (q, "fingers"), ngrams)
-phrase_probability (paste (q, "toes"), ngrams)
-phrase_probability (paste (q, "ears"), ngrams)
+
+p <- list (eyes = phrase_probability (paste (q, "eyes"), ngrams),
+           fingers = phrase_probability (paste (q, "fingers"), ngrams),
+           toes = phrase_probability (paste (q, "toes"), ngrams),
+           ears = phrase_probability (paste (q, "ears"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 9
@@ -160,10 +186,13 @@ Be grateful for the good times and keep the faith during the
 
 ```{r, warning=FALSE}
 q <- "Be grateful for the good times and keep the faith during the"
-phrase_probability (paste (q, "hard"), ngrams)
-phrase_probability (paste (q, "sad"), ngrams)
-phrase_probability (paste (q, "bad"), ngrams)
-phrase_probability (paste (q, "worse"), ngrams)
+
+p <- list (hard = phrase_probability (paste (q, "hard"), ngrams),
+           sad = phrase_probability (paste (q, "sad"), ngrams),
+           bad = phrase_probability (paste (q, "bad"), ngrams),
+           worse = phrase_probability (paste (q, "worse"), ngrams))
+
+p [which.min (p)]
 ```
 
 ### Question 10
@@ -177,10 +206,13 @@ If this isn't the cutest thing you've ever seen, then you must be
 
 ```{r, warning=FALSE}
 q <- "If this isn't the cutest thing you've ever seen, then you must be"
-phrase_probability (paste (q, "insensitive"), ngrams)
-phrase_probability (paste (q, "asleep"), ngrams)
-phrase_probability (paste (q, "callous"), ngrams)
-phrase_probability (paste (q, "insane"), ngrams)
+
+p <- list (insensitive = phrase_probability (paste (q, "insensitive"), ngrams),
+           asleep = phrase_probability (paste (q, "asleep"), ngrams),
+           callous = phrase_probability (paste (q, "callous"), ngrams),
+           insance = phrase_probability (paste (q, "insane"), ngrams))
+
+p [which.min (p)]
 ```
 
 
