@@ -31,7 +31,8 @@ p <- list (pretzels = phrase_probability (paste (q, "pretzels"), ngrams),
            beer     = phrase_probability (paste (q, "beer"), ngrams),
            soda     = phrase_probability (paste (q, "soda"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 
@@ -52,7 +53,8 @@ p <- list (universe = phrase_probability (paste (q, "universe"), ngrams),
            world    = phrase_probability (paste (q, "world"), ngrams),
            most     = phrase_probability (paste (q, "most"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 3
@@ -72,17 +74,18 @@ p <- list (happiest = phrase_probability (paste (q, "happiest"), ngrams),
            smelliest = phrase_probability (paste (q, "smelliest"), ngrams),
            bluest = phrase_probability (paste (q, "bluest"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 4
 
 Very early observations on the Bills game: Offense still struggling but the
 
-* players
+* X players
 * referees
 * defense
-* (A) crowd
+* (?) crowd
 
 ```{r, warning=FALSE}
 q <- "Very early observations on the Bills game: Offense still struggling but the"
@@ -92,7 +95,8 @@ p <- list (players = phrase_probability (paste (q, "players"), ngrams),
            defense = phrase_probability (paste (q, "defense"), ngrams),
            crowd = phrase_probability (paste (q, "crowd"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 5
@@ -112,7 +116,8 @@ p <- list (grocery = phrase_probability (paste (q, "grocery"), ngrams),
            movies = phrase_probability (paste (q, "movies"), ngrams),
            beach = phrase_probability (paste (q, "beach"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 6
@@ -132,7 +137,8 @@ p <- list (way = phrase_probability (paste (q, "way"), ngrams),
            motorcyle = phrase_probability (paste (q, "motorcycle"), ngrams),
            phone = phrase_probability (paste (q, "phone"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 7
@@ -152,15 +158,16 @@ p <- list(years = phrase_probability (paste (q, "years"), ngrams),
           weeks = phrase_probability (paste (q, "weeks"), ngrams),
           time = phrase_probability (paste (q, "time"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 8
 
 After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little
 
-* eyes
-* (A) fingers
+* X eyes
+* (?) fingers
 * toes
 * ears
 
@@ -172,16 +179,17 @@ p <- list (eyes = phrase_probability (paste (q, "eyes"), ngrams),
            toes = phrase_probability (paste (q, "toes"), ngrams),
            ears = phrase_probability (paste (q, "ears"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 9
 
 Be grateful for the good times and keep the faith during the
 
-* (A) hard
+* hard
 * sad
-* bad
+* (A) bad
 * worse
 
 ```{r, warning=FALSE}
@@ -192,7 +200,8 @@ p <- list (hard = phrase_probability (paste (q, "hard"), ngrams),
            bad = phrase_probability (paste (q, "bad"), ngrams),
            worse = phrase_probability (paste (q, "worse"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 ### Question 10
@@ -212,7 +221,8 @@ p <- list (insensitive = phrase_probability (paste (q, "insensitive"), ngrams),
            callous = phrase_probability (paste (q, "callous"), ngrams),
            insance = phrase_probability (paste (q, "insane"), ngrams))
 
-p [which.min (p)]
+p [which.max (p)]
+predict_next_word (q, ngrams)
 ```
 
 
