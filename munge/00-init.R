@@ -9,6 +9,9 @@ input.p <- 0.01
 # what percentage to use for the training data
 train.p <- 0.95
 
+# enable data set caching
+options (cache_write = TRUE)
+
 #
 # initialization logic
 #
