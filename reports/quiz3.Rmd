@@ -32,6 +32,20 @@ p <- list (eat = phrase_probability (paste (q, "eat"), ngrams),
            die = phrase_probability (paste (q, "die"), ngrams))
 
 p [which.max (p)]
+```
+
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
 predict_next_word (q, ngrams)
 ```
 
@@ -53,9 +67,22 @@ p <- list (spiritual = phrase_probability (paste (q, "spiritual"), ngrams),
            horticultural = phrase_probability (paste (q, "horticultural"), ngrams))
 
 p [which.max (p)]
-predict_next_word (q, ngrams)
 ```
 
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
+predict_next_word (q, ngrams)
+```
 
 ### Question 3
 
@@ -75,9 +102,22 @@ p <- list (morning = phrase_probability (paste (q, "morning"), ngrams),
            month = phrase_probability (paste (q, "month"), ngrams))
 
 p [which.max (p)]
-predict_next_word (q, ngrams)
 ```
 
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
+predict_next_word (q, ngrams)
+```
 
 ### Question 4
 
@@ -97,9 +137,22 @@ p <- list (sleepiness = phrase_probability (paste (q, "sleepiness"), ngrams),
            hunger = phrase_probability (paste (q, "hunger"), ngrams))
 
 p [which.max (p)]
-predict_next_word (q, ngrams)
 ```
 
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
+predict_next_word (q, ngrams)
+```
 
 ### Question 5
 
@@ -119,6 +172,20 @@ p <- list (picture = phrase_probability (paste (q, "picture"), ngrams),
            walk = phrase_probability (paste (q, "walk"), ngrams))
 
 p [which.max (p)]
+```
+
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
 predict_next_word (q, ngrams)
 ```
 
@@ -140,6 +207,20 @@ p <- list (account = phrase_probability (paste (q, "account"), ngrams),
            matter = phrase_probability (paste (q, "matter"), ngrams))
 
 p [which.max (p)]
+```
+
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
 predict_next_word (q, ngrams)
 ```
 
@@ -162,6 +243,20 @@ p <- list (finger = phrase_probability (paste (q, "finger"), ngrams),
            toe = phrase_probability (paste (q, "toe"), ngrams))
 
 p [which.max (p)]
+```
+
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
 predict_next_word (q, ngrams)
 ```
 
@@ -183,9 +278,22 @@ p <- list (center = phrase_probability (paste (q, "center"), ngrams),
            side = phrase_probability (paste (q, "side"), ngrams))
 
 p [which.max (p)]
-predict_next_word (q, ngrams)
 ```
 
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
+predict_next_word (q, ngrams)
+```
 
 ### Question 9
 
@@ -205,9 +313,22 @@ p <- list (daily = phrase_probability (paste (q, "daily"), ngrams),
            outside = phrase_probability (paste (q, "outside"), ngrams))
 
 p [which.max (p)]
-predict_next_word (q, ngrams)
 ```
 
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
+predict_next_word (q, ngrams)
+```
 
 ### Question 10
 
@@ -227,6 +348,20 @@ p <- list (pictures = phrase_probability (paste (q, "pictures"), ngrams),
            novels = phrase_probability (paste (q, "novels"), ngrams))
 
 p [which.max (p)]
+```
+
+```{r, message=FALSE, results='hide', echo=FALSE, include=FALSE}
+t <- data.table (phrase=names (p), p=unlist (p))
+t [, normp := as.vector (scale (unlist (p)))]
+```
+
+```{r, results='asis'}
+kable (t, format = "markdown")
+```
+
+What would the model predict as the next word?
+
+```{r}
 predict_next_word (q, ngrams)
 ```
 
