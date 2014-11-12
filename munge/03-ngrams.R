@@ -5,20 +5,21 @@
 cache ("ngrams", {
     
     # create a unigram model
-    unigrams <- create_ngrams (train.sentences, 1)
+    unigrams <- create_ngrams (sentences$train, 1)
     ngram_probabilities (unigrams)  
     
     # create a bigram model
-    bigrams <- create_ngrams (train.sentences, 2)
+    bigrams <- create_ngrams (sentences$train, 2)
     ngram_probabilities (bigrams) 
     
     # create a trigram model
-    trigrams <- create_ngrams (train.sentences, 3)
+    trigrams <- create_ngrams (sentences$train, 3)
     ngram_probabilities (trigrams)
     
+    # combine the models into a single data set
     ngrams <- rbindlist (list (unigrams, bigrams, trigrams))
 })
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 
 # context, then the 4th word is predicted
-cache ("test.ngrams",  create_ngrams (test.sentences, 4))
+cache ("test.ngrams",  create_ngrams (sentences$train, 4))
