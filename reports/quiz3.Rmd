@@ -1,0 +1,232 @@
+---
+title: "Quiz 3"
+author: "Nick Allen"
+date: "November 11, 2014"
+output: html_document
+---
+
+```{r, echo=FALSE, message=FALSE, results='hide', include=FALSE}
+setwd ("..")
+library (ProjectTemplate)
+library (knitr)
+load.project ()
+
+opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+### Question 1
+
+```{r}
+q <- "When you breathe, I want to be the air for you. I'll be there for you, I'd live and I'd"
+```
+
+* eat
+* give
+* sleep
+* die
+
+```{r}
+p <- list (eat = phrase_probability (paste (q, "eat"), ngrams),
+           give = phrase_probability (paste (q, "give"), ngrams),
+           sleep = phrase_probability (paste (q, "sleep"), ngrams),
+           die = phrase_probability (paste (q, "die"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+### Question 2
+
+```{r}
+q <- "Guy at my table's wife got up to go to the bathroom and I asked about dessert and he started telling me about his"
+```
+
+* spiritual
+* marital
+* financial
+* horticultural
+
+```{r}
+p <- list (spiritual = phrase_probability (paste (q, "spiritual"), ngrams),
+           marital = phrase_probability (paste (q, "marital"), ngrams),
+           financial = phrase_probability (paste (q, "financial"), ngrams),
+           horticultural = phrase_probability (paste (q, "horticultural"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+
+### Question 3
+
+```{r}
+q <- "I'd give anything to see arctic monkeys this"
+```
+
+* morning
+* decade
+* weekend
+* month
+
+```{r}
+p <- list (morning = phrase_probability (paste (q, "morning"), ngrams),
+           decade = phrase_probability (paste (q, "decade"), ngrams),
+           weekend = phrase_probability (paste (q, "weekend"), ngrams),
+           month = phrase_probability (paste (q, "month"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+
+### Question 4
+
+```{r}
+q <- "Talking to your mom has the same effect as a hug and helps reduce your"
+```
+
+* sleepiness
+* happiness
+* stress
+* hunger
+
+```{r}
+p <- list (sleepiness = phrase_probability (paste (q, "sleepiness"), ngrams),
+           happiness = phrase_probability (paste (q, "happiness"), ngrams),
+           stress = phrase_probability (paste (q, "stress"), ngrams),
+           hunger = phrase_probability (paste (q, "hunger"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+
+### Question 5
+
+```{r}
+q <- "When you were in Holland you were like 1 inch away from me but you hadn't time to take a"
+```
+
+* picture
+* look
+* minute
+* walk
+
+```{r}
+p <- list (picture = phrase_probability (paste (q, "picture"), ngrams),
+           look = phrase_probability (paste (q, "look"), ngrams),
+           minute = phrase_probability (paste (q, "minute"), ngrams),
+           walk = phrase_probability (paste (q, "walk"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+### Question 6
+
+```{r}
+q <- "I'd just like all of these ### Questions answered, a presentation of evidence, and a jury to settle the"
+```
+
+* account
+* case
+* incident
+* matter
+
+```{r}
+p <- list (account = phrase_probability (paste (q, "account"), ngrams),
+           case = phrase_probability (paste (q, "case"), ngrams),
+           incident = phrase_probability (paste (q, "incident"), ngrams),
+           matter = phrase_probability (paste (q, "matter"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+
+### Question 7
+
+```{r}
+q <- "I can't deal with unsymetrical things. I can't even hold an uneven number of bags of groceries in each"
+```
+
+* finger
+* arm
+* hand
+* toe
+
+```{r}
+p <- list (finger = phrase_probability (paste (q, "finger"), ngrams),
+           arm = phrase_probability (paste (q, "arm"), ngrams),
+           hand = phrase_probability (paste (q, "hand"), ngrams),
+           toe = phrase_probability (paste (q, "toe"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+### Question 8
+
+```{r}
+q <- "Every inch of you is perfect from the bottom to the"
+```
+
+* center
+* top
+* middle
+* side
+
+```{r}
+p <- list (center = phrase_probability (paste (q, "center"), ngrams),
+           top = phrase_probability (paste (q, "top"), ngrams),
+           middle = phrase_probability (paste (q, "middle"), ngrams),
+           side = phrase_probability (paste (q, "side"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+
+### Question 9
+
+```{r}
+q <- "I’m thankful my childhood was filled with imagination and bruises from playing"
+```
+
+* daily
+* weekly
+* inside
+* outside
+
+```{r}
+p <- list (daily = phrase_probability (paste (q, "daily"), ngrams),
+           weekly = phrase_probability (paste (q, "weekly"), ngrams),
+           inside = phrase_probability (paste (q, "inside"), ngrams),
+           outside = phrase_probability (paste (q, "outside"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
+
+### Question 10
+
+```{r}
+q <- "I like how the same people are in almost all of Adam Sandler's"
+```
+
+* pictures
+* movies
+* stories
+* novels
+
+```{r}
+p <- list (pictures = phrase_probability (paste (q, "pictures"), ngrams),
+           movies = phrase_probability (paste (q, "movies"), ngrams),
+           stories = phrase_probability (paste (q, "stories"), ngrams),
+           novels = phrase_probability (paste (q, "novels"), ngrams))
+
+p [which.max (p)]
+predict_next_word (q, ngrams)
+```
+
