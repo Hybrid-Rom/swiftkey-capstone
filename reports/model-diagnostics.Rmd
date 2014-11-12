@@ -1,0 +1,80 @@
+---
+title: "Model Diagnostics"
+author: "Nick Allen"
+date: "November 12, 2014"
+output: html_document
+---
+
+```{r, echo=FALSE, message=FALSE, results='hide', include=FALSE}
+setwd ("..")
+library (ProjectTemplate)
+library (knitr)
+load.project ()
+
+opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+Place a hard limit on the number of test phrases to predict.
+
+```{r}
+count <- min (30000, nrow (test.ngrams))
+comma (count)
+```
+
+Choose phrases to predict at random.
+
+```{r, results='hide'}
+p <- count / nrow (test.ngrams)
+test.ngrams [, test := as.logical (rbinom (n = nrow (test.ngrams), size = 1, prob = p))]
+```
+
+Calculate the probability of each phrase.
+
+```{r, results='hide'}
+test.ngrams [test == TRUE, p := phrase_probability (phrase, ngrams), by = phrase]
+```
+
+Use the model to predict the next word.
+
+```{r, results='hide'}
+test.ngrams [test == TRUE, word_hat := predict_next_word (context, ngrams), by = phrase]
+test.ngrams [test == TRUE, correct := word == word_hat ]
+```
+
+How many of the test phrases were predicted accurately?
+
+```{r}
+correct <- sum (test.ngrams$correct, na.rm = TRUE)
+percent (correct / count)
+```
+
+How many did the null model predict accurately?
+
+```{r}
+correct <- nrow (test.ngrams [test == TRUE & word == "the"])
+percent (correct / count)
+```
+
+```{r, results='hide', echo=FALSE}
+# what words are being predicted correctly
+words <- test.ngrams [test == T, list ('correct'  = sum (correct),
+                                       'total'    = .N,
+                                       'accuracy' = (sum (correct) / .N) * 100
+                                       ), by = word]
+
+# only keep those with significant number of occurrences
+words <- words [total > 3]
+```
+
+What types of words were predicted accurately?
+
+```{r}
+head (words [order (accuracy, decreasing = T)][accuracy > 10], n = 50)
+```
+
+What types of were NOT predicted accurately?
+
+```{r}
+head (words [order (accuracy, decreasing = F)], n = 50)
+```
+
