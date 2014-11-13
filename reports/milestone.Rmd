@@ -1,0 +1,145 @@
+---
+title: "Milestone Report"
+author: "Nick Allen"
+date: "November 13, 2014"
+output:
+  html_document:
+    toc: yes
+---
+
+```{r load-project, include=FALSE}
+setwd ("..")
+library (ProjectTemplate)
+library (knitr)
+load.project ()
+```
+
+The goal of this project is to create a predictive text model that assists a user in typing on a constrained mobile device.  The model will consume a set of text culled from multiple sources to learn the style of written language and provide contextually relevant suggestions for next words as the user types.
+
+## Data
+
+The model will consume data from three sources.  Each of these sources has significant stylistic differences which will provide the model with an understanding of various context in which written language is used.
+
+### Blogs
+
+The first source of text is pulled from multiple internet blogs.  This data set likely has a diverse set of authors from professionals to amateurs with varied backgrounds and education.  There is likely some level of formality in this written text, but the degree of which will also vary greatly.
+
+```{r blogs-load, include=FALSE}
+# load the blogs data
+blogs <- readLines ("../data/en_US/en_US.blogs.txt", skipNul = TRUE)
+
+# find the legnth of each line
+lengths <- unlist (lapply (blogs, nchar))
+
+```
+
+The data file contains a single blog document on each line.  There are `r comma (length (blogs))` blog documents contained wthin the data.  The longest blog entry contains `r comma (max (lengths))` characters and the shortest contains  `r comma (min (lengths))` character.
+
+A word cloud is an image composed of words in which the size of each word indicates its frequency.  This is a relatively simple technique to understand the types of words used in the context of the blogs data.  All common words such as 'the' and 'of' have been removed to gain a better understanding of the text.
+
+```{r blogs-word-cloud, include=FALSE}
+
+# sample the input
+index <- as.logical (rbinom (n = length (blogs), size = 1, prob = 0.10))
+blogs <- blogs [index]
+
+# create a corpus
+cache ("blogs_corpus", { blogs_corpus <- create_corpus (blogs) })
+```
+
+```{r blogs-wordcloud, echo=FALSE, warning=FALSE}
+# create a wordcloud
+wordcloud (blogs_corpus, 
+           scale=c(5,0.5), 
+           max.words=200, 
+           random.order=FALSE, 
+           rot.per=0.35, 
+           use.r.layout=FALSE, 
+           colors=brewer.pal(8, 'Dark2'))
+```
+
+### News
+
+```{r news-load, include=FALSE}
+# load the news data
+news <- readLines ("../data/en_US/en_US.news.txt", skipNul = TRUE)
+```
+
+```{r news-length, include=FALSE}
+# find the length of each line
+lengths <- unlist (lapply (news, nchar))
+```
+
+The second source of text is pulled from news stories written by professional journalists.  This source is likely to contain text with the greatest degree of formality and professionalism.  The authors of this text all likely have a similar background and education.
+
+The data file contains a single news article on each line.  There are `r comma (length (news))` news documents contained wthin the data.  The longest news article contains `r comma (max (lengths))` characters and the shortest contains  `r comma (min (lengths))` character.
+
+```{r news-corpus, include=FALSE}
+
+# sample the input
+index <- as.logical (rbinom (n = length (news), size = 1, prob = 0.10))
+news <- news [index]
+
+# create a corpus
+cache ("news_corpus", { news_corpus <- create_corpus (news) })
+```
+
+```{r news-wordcloud, echo=FALSE, warning=FALSE}
+# create a wordcloud
+wordcloud (news_corpus, 
+           scale=c(5,0.5), 
+           max.words=200, 
+           random.order=FALSE, 
+           rot.per=0.35, 
+           use.r.layout=FALSE, 
+           colors=brewer.pal(8, 'Dark2'))
+```
+
+### Twitter
+
+```{r twitter-load, include=FALSE}
+# load the news data
+tweets <- readLines ("../data/en_US/en_US.twitter.txt", skipNul = TRUE)
+```
+
+```{r twitter-length, include=FALSE}
+# find the length of each line
+lengths <- unlist (lapply (news, nchar))
+```
+
+The last source of text is pulled from Twitter.  This source is likely to contain text with the lowest level of formality.  The authorship and content is likely to be extremely diverse
+
+The data file contains a single tweet on each line.  There are `r comma (length (tweets))` tweets contained wthin the data.  The longest tweet contains `r comma (max (lengths))` characters and the shortest contains  `r comma (min (lengths))` character.
+
+```{r tweets-word-cloud, include=FALSE}
+
+# sample the input
+index <- as.logical (rbinom (n = length (tweets), size = 1, prob = 0.10))
+tweets <- tweets [index]
+
+# create a corpus
+cache ("tweets_corpus", { tweets_corpus <- create_corpus (tweets)})
+```
+
+```{r, tweets-wordcloud, echo=FALSE, warning=FALSE}
+# create a wordcloud
+wordcloud (tweets_corpus, 
+           scale=c(5,0.5), 
+           max.words=200, 
+           random.order=FALSE, 
+           rot.per=0.35, 
+           use.r.layout=FALSE, 
+           colors=brewer.pal(8, 'Dark2'))
+```
+
+
+### Exploration
+
+#### Dictionary
+
+
+
+
+
+
+
