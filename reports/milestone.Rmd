@@ -4,14 +4,19 @@ author: "Nick Allen"
 date: "November 13, 2014"
 output:
   html_document:
+    fig_caption: yes
     toc: yes
 ---
 
 ```{r load-project, include=FALSE}
 setwd ("..")
 library (ProjectTemplate)
-library (knitr)
 load.project ()
+
+# ugly, but needed
+if (exists ("lines")) rm (lines)
+if (exists ("sentences")) rm (sentences)
+if (exists ("ngrams")) rm (ngrams)
 ```
 
 The goal of this project is to create a predictive text model that assists a user in typing on a constrained mobile device.  The model will consume a set of text culled from multiple sources to learn the style of written language and provide contextually relevant suggestions for next words as the user types.
@@ -24,43 +29,19 @@ The model will consume data from three sources.  Each of these sources has signi
 
 The first source of text is pulled from multiple internet blogs.  This data set likely has a diverse set of authors from professionals to amateurs with varied backgrounds and education.  There is likely some level of formality in this written text, but the degree of which will also vary greatly.
 
-```{r blogs-load, include=FALSE}
+```{r blogs-load, include=FALSE, cache=TRUE}
 # load the blogs data
 blogs <- readLines ("../data/en_US/en_US.blogs.txt", skipNul = TRUE)
 
 # find the legnth of each line
 lengths <- unlist (lapply (blogs, nchar))
-
 ```
 
 The data file contains a single blog document on each line.  There are `r comma (length (blogs))` blog documents contained wthin the data.  The longest blog entry contains `r comma (max (lengths))` characters and the shortest contains  `r comma (min (lengths))` character.
 
-A word cloud is an image composed of words in which the size of each word indicates its frequency.  This is a relatively simple technique to understand the types of words used in the context of the blogs data.  All common words such as 'the' and 'of' have been removed to gain a better understanding of the text.
-
-```{r blogs-corpus, include=FALSE}
-
-# sample the input
-index <- as.logical (rbinom (n = length (blogs), size = 1, prob = 0.10))
-blogs <- blogs [index]
-
-# create a corpus
-cache ("blogs_corpus", { blogs_corpus <- create_corpus (blogs) })
-```
-
-```{r blogs-wordcloud, echo=FALSE, warning=FALSE}
-# create a wordcloud
-wordcloud (blogs_corpus, 
-           scale=c(5,0.5), 
-           max.words=200, 
-           random.order=FALSE, 
-           rot.per=0.35, 
-           use.r.layout=FALSE, 
-           colors=brewer.pal(8, 'Dark2'))
-```
-
 ### News
 
-```{r news-load, include=FALSE}
+```{r news-load, include=FALSE, cache=TRUE}
 # load the news data
 news <- readLines ("../data/en_US/en_US.news.txt", skipNul = TRUE)
 ```
@@ -74,30 +55,9 @@ The second source of text is pulled from news stories written by professional jo
 
 The data file contains a single news article on each line.  There are `r comma (length (news))` news documents contained wthin the data.  The longest news article contains `r comma (max (lengths))` characters and the shortest contains  `r comma (min (lengths))` character.
 
-```{r news-corpus, include=FALSE}
-
-# sample the input
-index <- as.logical (rbinom (n = length (news), size = 1, prob = 0.10))
-news <- news [index]
-
-# create a corpus
-cache ("news_corpus", { news_corpus <- create_corpus (news) })
-```
-
-```{r news-wordcloud, echo=FALSE, warning=FALSE}
-# create a wordcloud
-wordcloud (news_corpus, 
-           scale=c(5,0.5), 
-           max.words=200, 
-           random.order=FALSE, 
-           rot.per=0.35, 
-           use.r.layout=FALSE, 
-           colors=brewer.pal(8, 'Dark2'))
-```
-
 ### Twitter
 
-```{r twitter-load, include=FALSE}
+```{r twitter-load, include=FALSE, cache=TRUE}
 # load the news data
 tweets <- readLines ("../data/en_US/en_US.twitter.txt", skipNul = TRUE)
 ```
@@ -111,17 +71,65 @@ The last source of text is pulled from Twitter.  This source is likely to contai
 
 The data file contains a single tweet on each line.  There are `r comma (length (tweets))` tweets contained wthin the data.  The longest tweet contains `r comma (max (lengths))` characters and the shortest contains  `r comma (min (lengths))` character.
 
-```{r tweets-word-cloud, include=FALSE}
+### Exploration
+
+#### Common Terms
+
+A word cloud is an image composed of words in which the size of each word indicates its frequency.  This is a relatively simple technique to understand the types of words used in each data source.  All common words such as 'the' and 'of' have been removed to gain a better understanding of the text.
+
+```{r blogs-corpus, include=FALSE, cache=TRUE}
+
+# sample the input
+index <- as.logical (rbinom (n = length (blogs), size = 1, prob = 0.10))
+blogs <- blogs [index]
+
+# create a corpus
+blogs_corpus <- create_corpus (blogs)
+```
+
+```{r blogs-wordcloud, echo=FALSE, warning=FALSE, fig.cap="Wordcloud containing words from the Blogs text.", cache=TRUE}
+# create a wordcloud
+wordcloud (blogs_corpus, 
+           scale=c(5,0.5), 
+           max.words=200, 
+           random.order=FALSE, 
+           rot.per=0.35, 
+           use.r.layout=FALSE, 
+           colors=brewer.pal(8, 'Dark2'))
+```
+
+```{r news-corpus, include=FALSE, cache=TRUE}
+
+# sample the input
+index <- as.logical (rbinom (n = length (news), size = 1, prob = 0.10))
+news <- news [index]
+
+# create a corpus
+news_corpus <- create_corpus (news)
+```
+
+```{r news-wordcloud, echo=FALSE, warning=FALSE, fig.cap="Wordcloud containing words from the News text.", cache=TRUE}
+# create a wordcloud
+wordcloud (news_corpus, 
+           scale=c(5,0.5), 
+           max.words=200, 
+           random.order=FALSE, 
+           rot.per=0.35, 
+           use.r.layout=FALSE, 
+           colors=brewer.pal(8, 'Dark2'))
+```
+
+```{r tweets-corpus, include=FALSE, cache=TRUE}
 
 # sample the input
 index <- as.logical (rbinom (n = length (tweets), size = 1, prob = 0.10))
 tweets <- tweets [index]
 
 # create a corpus
-cache ("tweets_corpus", { tweets_corpus <- create_corpus (tweets)})
+tweets_corpus <- create_corpus (tweets)
 ```
 
-```{r, tweets-wordcloud, echo=FALSE, warning=FALSE}
+```{r, tweets-wordcloud, echo=FALSE, warning=FALSE, fig.cap="Wordcloud containing words from the Twitter text.", cache=TRUE}
 # create a wordcloud
 wordcloud (tweets_corpus, 
            scale=c(5,0.5), 
@@ -132,10 +140,40 @@ wordcloud (tweets_corpus,
            colors=brewer.pal(8, 'Dark2'))
 ```
 
-### Exploration
+#### Frequency of Term Occurrence
 
-#### Dictionary
+The frequency of term occurrence counts the number of terms that appear a fixed number of times within the text.  For example, there are roughly 80,000 terms that appear once in the blog text.  There are roughly 1,000 terms that appear 10 times within the blog text, a far lower number.  As would be expected this value decreases rapidly as shown by the figure.
 
+```{r create-unigrams, include=FALSE, cache=TRUE}
+
+blog_unigrams <- create_ngrams (blogs, n = 1)
+blog_unigrams [, src := "blog"]
+
+news_unigrams <- create_ngrams (news, n = 1)
+news_unigrams [, src := "news"]
+
+tweets_unigrams <- create_ngrams (tweets, n = 1)
+tweets_unigrams [, src := "tweets"]
+
+unigrams <- rbindlist (list (blog_unigrams, news_unigrams, tweets_unigrams))
+```
+
+```{r, include=FALSE}
+# count the number of times a word appears once, twice, etc
+occurrences <- unigrams [, .N, by = list (src, phrase_count)]
+```
+
+```{r, fig.cap="The number of terms that have a fixed number of occurrences in the text."}
+ggplot (occurrences, aes (phrase_count, N, color = src)) + 
+    geom_line() +
+    geom_point() +
+    scale_x_log10 () +
+    ggtitle("Frequency of Term Occurrence") +
+    xlab ("Term Occurrence") + 
+    ylab ("Frequency")
+```
+
+It should be noted that the News text contains significantly fewer terms that appear only once within the text as compared to the Blog and Twitter sources.  There is a less diverse vocabulary within the News compared to the other sources.  This would make sense given that most of these are written by journalists with similar backgrounds and education.  This similarity of authorship is not the same in the other data sources.
 
 
 
