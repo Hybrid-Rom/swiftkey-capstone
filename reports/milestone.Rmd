@@ -37,7 +37,7 @@ The data file contains a single blog document on each line.  There are `r comma 
 
 A word cloud is an image composed of words in which the size of each word indicates its frequency.  This is a relatively simple technique to understand the types of words used in the context of the blogs data.  All common words such as 'the' and 'of' have been removed to gain a better understanding of the text.
 
-```{r blogs-word-cloud, include=FALSE}
+```{r blogs-corpus, include=FALSE}
 
 # sample the input
 index <- as.logical (rbinom (n = length (blogs), size = 1, prob = 0.10))
@@ -131,7 +131,6 @@ wordcloud (tweets_corpus,
            use.r.layout=FALSE, 
            colors=brewer.pal(8, 'Dark2'))
 ```
-
 
 ### Exploration
 
