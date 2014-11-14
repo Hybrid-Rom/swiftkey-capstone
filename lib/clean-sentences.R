@@ -7,8 +7,8 @@ clean_sentences <- function (sentences, start_tag = "^", end_tag = "$") {
     # lower case
     sentences <- stri_trans_tolower (sentences)
     
-    # remove anything that is not alpha, numeric or whitespace
-    sentences <- stri_replace_all_regex (sentences, "[^[:alnum:][:blank:]]+", " ")
+    # remove anything that is not alpha, numeric, whitespace or ' (for contractions)
+    sentences <- stri_replace_all_regex (sentences, "[^[:alnum:][:blank:]']+", " ")
     
     # replace all digits with a simple indicator flag
     sentences <- stri_replace_all_regex (sentences, "[[:digit:]]+", "###")

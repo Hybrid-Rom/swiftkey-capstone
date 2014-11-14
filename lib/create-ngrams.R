@@ -11,7 +11,9 @@ create_ngrams <- function (sentences, n) {
     stopifnot (length (sentences) > 0)
     
     # split the sentences into n-grams
-    tok <- function(x) RWeka::NGramTokenizer(x, RWeka::Weka_control(min = n, max = n))
+    tok <- function(x) RWeka::NGramTokenizer(x, RWeka::Weka_control(min = n, 
+                                                                    max = n,
+                                                                    delimiters = ' \r\n\t.,;:\\"()?!'))
     ngrams <- data.table (phrase = unlist (lapply (sentences, tok)))
     
     # remove duplicate ngrams and count the number of each

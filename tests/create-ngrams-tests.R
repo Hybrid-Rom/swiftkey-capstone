@@ -15,3 +15,7 @@ unigrams <- create_ngrams (sentences, 1)
 expect_equal (unigrams [, sum (phrase_count)], 10)
 expect_equal (unigrams [phrase == "^", phrase_count], 2)
 expect_equal (unigrams [phrase == "i", phrase_count], 2)
+
+# contractions should be maintained
+unigrams <- create_ngrams ("don't he'll they've she's", 1)
+expect_equal (unigrams [, sum (phrase_count)], 4)
