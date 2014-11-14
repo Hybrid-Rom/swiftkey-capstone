@@ -16,7 +16,6 @@ load.project ()
 # ugly, but needed
 if (exists ("lines")) rm (lines)
 if (exists ("sentences")) rm (sentences)
-if (exists ("ngrams")) rm (ngrams)
 ```
 
 The goal of this project is to create a predictive text model that assists a user in typing on a constrained mobile device.  The model will consume a set of text culled from multiple sources to learn the style of written language and provide contextually relevant suggestions for next words as the user types.
@@ -174,6 +173,34 @@ ggplot (occurrences, aes (phrase_count, N, color = src)) +
 ```
 
 It should be noted that the News text contains significantly fewer terms that appear only once within the text as compared to the Blog and Twitter sources.  There is a less diverse vocabulary within the News compared to the other sources.  This would make sense given that most of these are written by journalists with similar backgrounds and education.  This similarity of authorship is not the same in the other data sources.
+
+#### N-Grams
+
+Breaking phrases into n-grams is a common method for analyzing text.  An n-gram text model is a simple and common model for predicting text.  For example, consider the sentence "I eat green eggs and ham."  The 1-grams of this sentence are "I", "eat", "green", "eggs" , "and", "ham".  The 2-grams of this sentence are "I eat", "eat green", "green eggs", "eggs and", "and ham".
+
+```{r, include=FALSE}
+most_common <- ngrams [
+    !stri_detect_regex (phrase, "[\\^\\$#]"),  # ignore start/end sentences
+    .SD [head (order (-phrase_count), n = 5)], by = n]
+
+most_common [n == 1, gram := "Unigram"]
+most_common [n == 2, gram := "Bigram"]
+most_common [n == 3, gram := "Trigram"]
+most_common [, gram := factor (gram, levels = c("Unigram", "Bigram", "Trigram"))]
+```
+
+```{r}
+ggplot (most_common, 
+        aes (reorder (phrase, phrase_count), phrase_count, fill = gram)) + 
+    geom_bar (stat="identity") +
+    scale_y_continuous (labels = comma) + 
+    xlab ("Frequency") +
+    ylab ("N-gram") + 
+    ggtitle ("Most Common N-Grams") +
+    facet_wrap (~ gram, ncol=1, scales = "free") +
+    theme(legend.position="none")
+```
+
 
 
 
