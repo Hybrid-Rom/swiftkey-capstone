@@ -18,6 +18,9 @@ cache ("ngrams", {
     
     # combine the models into a single data set
     ngrams <- rbindlist (list (unigrams, bigrams, trigrams))
+    
+    # exclude ngrams that offer little predictive power
+    ngrams <- ngrams [ phrase_count > 3 ]
 })
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 

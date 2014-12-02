@@ -23,4 +23,10 @@ expect_equal (predict_next_word ("I am", ngrams), "sam")
 expect_equal (predict_next_word ("I", ngrams), "am")
 expect_equal (predict_next_word ("", ngrams), "i")
 
+# return the top N predictions
 expect_equal (length (predict_next_word ("I am", ngrams, N = 2)), 2)
+
+# TODO
+predict_next_word ("words cannot describe how mu", ngrams)
+
+
