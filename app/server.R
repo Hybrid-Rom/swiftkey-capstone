@@ -1,9 +1,6 @@
 
-# instantiate the project 
-library (ProjectTemplate)
-load.project (override.config = list (cache_loading = FALSE, 
-                                      data_loading  = FALSE,
-                                      munging       = FALSE))
+# for shinyapps.io, each helper function file and all libraryies needs to be sourced
+source ("helpers.R")
 
 # load the ngram model used for type ahead prediction
 load ("ngrams.RData")
