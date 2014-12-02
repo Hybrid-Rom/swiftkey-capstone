@@ -1,17 +1,16 @@
 
-
-#load.project ()
+# library (ProjectTemplate)
+# load.project ()
 
 shinyServer (function (input, output) {
   
     # predict the next word
     output$nextword <- renderText ({
-        nextword <- predict_next_word (input$context, ngrams)
+        nextwords <- predict_next_word (input$context, ngrams, N=3)
         
-        # correct
-        if (nextword == "$") 
-            nextword = "."
+        # replace the end-of-sentence marker
+        nextwords [nextwords == "$"] <- "."
         
-        nextword
+        nextwords
     })
 })

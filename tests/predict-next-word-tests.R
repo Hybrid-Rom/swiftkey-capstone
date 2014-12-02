@@ -15,14 +15,12 @@ ngram_probabilities (bigrams)
 unigrams <- create_ngrams (sentences, 1)
 ngram_probabilities (unigrams)
 
-# combine the ngramss
+# combine the ngrams
 ngrams <- rbindlist (list (trigrams, bigrams, unigrams))
 
-# match on a 3-gram
-expect_equal (predict_next_word ("I am", ngrams, n = 3), "sam")
+# make some predictions!
+expect_equal (predict_next_word ("I am", ngrams), "sam")
+expect_equal (predict_next_word ("I", ngrams), "am")
+expect_equal (predict_next_word ("", ngrams), "i")
 
-# match on a 2-gram
-expect_equal (predict_next_word ("I", ngrams, n = 3), "am")
-
-# match a 1-gram
-expect_equal (predict_next_word ("", ngrams, n = 3), "i")
+expect_equal (length (predict_next_word ("I am", ngrams, N = 2)), 2)

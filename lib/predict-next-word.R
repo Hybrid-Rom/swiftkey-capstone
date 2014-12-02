@@ -1,8 +1,12 @@
 
 #
-# given a vector of previous words, predict the next word.
+# given a vector of previous words, predict the next word.  
 #
-predict_next_word <- function (phrase, ngrams, n = 3) {
+# 'n' defines the number of predictions to return.  by default only
+# the best (only 1) prediction will be returned.  otherwise, the top
+# 'n' predictions will be returned.
+#
+predict_next_word <- function (phrase, ngrams, N = 1, grams = 3:1) {
     
     # sanity checks
     stopifnot (is.character (phrase))
@@ -15,8 +19,8 @@ predict_next_word <- function (phrase, ngrams, n = 3) {
     previous <- unlist (strsplit (clean_phrase, split = " ", fixed = TRUE))
     len <- length (previous)
     
-    prediction <- NULL
-    for (i in n:1) {
+    predictions <- NULL
+    for (i in grams) {
         
         # ensure there are enough previous words 
         # for example, a trigram ngrams needs 2 previous words
@@ -26,13 +30,15 @@ predict_next_word <- function (phrase, ngrams, n = 3) {
             ctx <- tail (previous, i-1)
             ctx <- paste (ctx, collapse = " ")
             
-            prediction <- ngrams [context == ctx, .SD [which.max (p), word]]
-            if (length (prediction) > 0) {
+            #prediction <- ngrams [context == ctx, .SD [which.max (p), word]]
+            predictions <- ngrams [context == ctx, 
+                                   .SD [order (p, decreasing=T)[1:N], word]]
+            if (length (predictions) > 0) {
                 #message (sprintf ("%s-gram: '%s' -> '%s'", i, ctx, prediction))
                 break
             }
         }
     }
     
-    return (prediction)
+    return (predictions)
 }
