@@ -9,7 +9,7 @@ shinyServer (function (input, output) {
 
   # what are the top 'N' most likely words to be next?
   next_words <- reactive ({
-    predict_next_word (input$context, ngrams, N = 5)
+    predict_next_word (input$context, ngrams)
   })
   
   # what is the single word most likely to be next?

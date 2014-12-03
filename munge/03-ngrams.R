@@ -24,6 +24,13 @@ cache ("ngrams", {
     
     # exclude any non-english characters
     ngrams <- ngrams [ !stri_detect (phrase, regex = "[^A-Za-z #'\\^\\$]+")]
+    
+    # do not predict a 'start of sentence'
+    ngrams <- ngrams [word != "^"]
+    
+    # do not predict 'end of sentence' with no context or at the start of a sentence
+    ngrams <- ngrams [!(context == ""  & word == "$")]
+    ngrams <- ngrams [!(context == "^" & word == "$")]
 })
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 

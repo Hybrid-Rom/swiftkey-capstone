@@ -22,7 +22,7 @@ phrase_accuracy <- function (phrase, ngrams) {
   ), by = phrase]
   
   # is the actual next word in the top 5 suggestions?
-  phrases [, accurate := word %in% predict_next_word (context, ngrams, N = 5)$word, by = phrase]
+  phrases [, accurate := word %in% predict_next_word (context, ngrams)$word, by = phrase]
   phrases [, length := .I ]
   phrases [, accuracy := cumsum (accurate) / length ]
   
