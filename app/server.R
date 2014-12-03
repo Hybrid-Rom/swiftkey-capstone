@@ -43,12 +43,14 @@ shinyServer (function (input, output) {
     phrases <- phrase_accuracy (input$context, ngrams)
     
     ggplot (phrases, aes (length, accuracy)) + 
-      geom_point() + 
-      geom_line() +
+      geom_line () +
+      geom_point (aes (colour = accurate), size = 5) + 
+      scale_colour_manual (values = c("red", "green")) +
       scale_x_discrete () +
       scale_y_continuous (label = percent) +
       xlab ("Phrase Length") +
-      ylab ("Accuracy")
+      ylab ("Accuracy") +
+      theme (legend.position = "none")
   })
 })
 
