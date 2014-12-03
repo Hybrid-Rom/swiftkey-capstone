@@ -1,7 +1,10 @@
-
+#
+# deploys the application to ShinyApps.io
+#
 
 # create a directory to build the deployable package
 path <- file.path (tempdir(), "deploy")
+message ("building deployable app at ", path)
 
 # recreate the directory to start fresh
 unlink (path, recursive = TRUE)
@@ -14,8 +17,8 @@ file.copy (list.files ("lib", full.names = TRUE), path)
 file.copy (list.files ("app", full.names = TRUE), path)
 
 # define the token for deployment
-shinyapps::setAccountInfo(name='farsite',
-                          token='C419EC230C4EABCF534F83566F2D1DAE',
+shinyapps::setAccountInfo(name='farsite', 
+                          token='C419EC230C4EABCF534F83566F2D1DAE', 
                           secret='<SECRET>')
 
 # deploy
