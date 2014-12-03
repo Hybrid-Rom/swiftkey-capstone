@@ -10,6 +10,7 @@ load ("cache/ngrams.RData")
 ngrams [, phrase_count := NULL]
 ngrams [, context_count := NULL]
 ngrams [, logp := NULL]
+ngrams [, phrase := NULL]
 
 # keep the top 5 most likely words for each context only
 ngrams <- ngrams [ order (context, -p)]
