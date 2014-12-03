@@ -21,6 +21,9 @@ cache ("ngrams", {
     
     # exclude ngrams that offer little predictive power
     ngrams <- ngrams [ phrase_count > 3 ]
+    
+    # exclude any non-english characters
+    ngrams <- ngrams [ !stri_detect (phrase, regex = "[^A-Za-z #'\\^\\$]+")]
 })
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 
