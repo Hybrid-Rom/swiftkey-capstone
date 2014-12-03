@@ -35,17 +35,21 @@ shinyUI (
     # the 3rd row
     fluidRow (
       column (6, 
-              helpText ( paste0 ("Figure 1: The top 5 most likely next words and the probability ", 
-                                 "of each as calculated by the model."))),
+              helpText ( 
+                paste0 ("Figure 1: The top 5 most likely next words and the probability ", 
+                        "of each as calculated by the model."))),
       column (6, 
-              helpText ( paste0 ("Figure 2: The cumulative accuracy of type ahead prediction for the current ",
-                                 "phrase. The model is considered accurate if the next word appears ", 
-                                 "in the top 5 suggestions.")),
+              helpText ( 
+                paste0 ("Figure 2: The cumulative accuracy of type ahead prediction for the current ",
+                        "phrase. The model is considered accurate if the next word appears ", 
+                        "in the top 5 suggestions.")),
               
-              helpText ( paste0 ("A phrase such as 'I love you' is broken into 3 sub-phrases and the accuracy is ",
-                                 "calculated for each.  The X-axis reflects the length of each sub-phrase; ",
-                                 "'I' of length 1, 'I love' of length 2, and 'I love you' of length 3. The Y-axis ",
-                                 "reflects the cumulative accuracy of each sub-phrase.")))
+              helpText ( 
+                paste0 ("A phrase such as 'I Love You' is split into three sub-phrases; 'I', 'I Love', and ",
+                        "'I Love You'.  The X-axis reflects the length of each sub-phrase.  The model then ",
+                        "performs type ahead prediction on each of these sub-phrases.  A green point indicates ",
+                        "that a sub-phrase was predicted accurately.  The cumulative accuracy of the model's ",
+                        "predictions is reflected on the Y-axis.")))
     ),
     
     # sub-title
