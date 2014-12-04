@@ -2,3 +2,4 @@ swiftkey-capstone.Rproj
 .Rproj.user
 cache
 .Rhistory
+*.pem
