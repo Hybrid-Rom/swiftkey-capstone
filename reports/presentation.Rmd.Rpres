@@ -32,21 +32,20 @@ Multi-Level Model
 - The model combines a unigram, bigram, and trigram model
 - Larger 'N' models...
    - Take into account a greater context and tend to be more accurate
-   - Have a greater number of n-grams and more frequently encounter ones not in the training data and thus have no basis for a prediction
+   - Have a greater number of n-grams and more frequently encounter ones not in the training data and thus have no basis to make a prediction
 - A multi-level model balances the advantages and disadvantages of each
-   - First consult the larger 'N' models (trigram) and only consult the lower orders as needed
+   - First consult the larger 'N' models (trigram) and only consult the lower order models as needed
 
 Application
 ========================================================
 
 - The application provides a text box for typing 
-    - The application updates automatically as the user types
-    - The most likely next word as suggested by the model is shown directly under the text entry box
+    - Updates automatically as the user types
+    - Most likely next word is shown directly under the text entry box
 - Figure 1: The model's top 5 Suggestions along with the associated probabilities of each
 - Figure 2: The model's cumulative accuracy in predicting each sub-phrase
 - Figure 3: The cumulative suggestions of the model for the entire phrase
-    - Nodes with a caret ^ contains a component of the phrase
-    - Connected nodes contain the model's suggestions for that phrase component
+    - Nodes with a caret ^ contain a component of the phrase and connected nodes contain the model's suggestions for that phrase component
 
 Resources
 ========================================================
