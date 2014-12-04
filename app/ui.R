@@ -52,6 +52,18 @@ shinyUI (
                         "predictions is reflected on the Y-axis.")))
     ),
     
+    # the 4th row
+    fluidRow (
+      
+      # simple network
+      column (6, 
+              h5 ("Phrase Tree"),
+              simpleNetworkOutput ("phrase_tree")),
+      
+      # TODO
+      column (6)
+    ),
+    
     # sub-title
     fluidRow (
       h6 (

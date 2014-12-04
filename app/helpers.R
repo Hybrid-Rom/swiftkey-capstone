@@ -6,6 +6,7 @@ library (tm)
 library (scales)
 library (stats)
 library (shiny)
+library (networkD3)
 
 #
 # shinyapps.io requires that you source your own helper files... boo.

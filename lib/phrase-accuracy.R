@@ -11,8 +11,12 @@ phrase_accuracy <- function (phrase, ngrams) {
   
   # generate a list of sub-phrases to predict
   split <- unlist (stri_split (phrase, regex = "[ ]+"))
-  phrases <- sapply (2:length (split), function (end) split [1:end])
-  phrases <- sapply (phrases, function (p) paste (p, collapse = " "))
+  if (length (split) > 1) {
+    phrases <- sapply (2:length (split), function (end) split [1:end])
+    phrases <- sapply (phrases, function (p) paste (p, collapse = " "))
+  } else {
+    phrases <- split
+  }
   
   # extract the context and actual next word
   phrases <- data.table (phrase = phrases)
@@ -21,8 +25,18 @@ phrase_accuracy <- function (phrase, ngrams) {
     word    = last_word (phrase)
   ), by = phrase]
   
+  # grab the top 5 word suggestions for each phrase
+  phrases [, c("w1","w2","w3","w4","w5") := {
+    words <- predict_next_word (context, ngrams)$word
+    words <- pad (words, n = 5, pad_with = NA)
+    as.list (words)
+  }, by = phrase ]
+
   # is the actual next word in the top 5 suggestions?
-  phrases [, accurate := word %in% predict_next_word (context, ngrams)$word, by = phrase]
+  phrases [, accurate := FALSE]
+  phrases [ word == w1 | word == w2 | word == w3 | word == w4 | word == w5, accurate := TRUE]
+  
+  # calculate the cumulative accuracy for each of the sub-phrases
   phrases [, length := .I ]
   phrases [, accuracy := cumsum (accurate) / length ]
   
