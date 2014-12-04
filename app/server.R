@@ -71,8 +71,11 @@ shinyServer (function (input, output) {
     setnames (sugg_links, c("source", "target"))
     sugg_links <- sugg_links [complete.cases (sugg_links)]
     
-    # aggregate the links and nodes
-    simpleNetwork (rbind (word_links, sugg_links), font = 16)
+    # create a network plot
+    links <- rbind (word_links, sugg_links)
+    if (nrow (links) < 100) {
+      simpleNetwork (links, font = 16)
+    }
   })
 })
 
