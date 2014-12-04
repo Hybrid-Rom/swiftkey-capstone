@@ -12,7 +12,7 @@ phrase_accuracy <- function (phrase, ngrams) {
   # generate a list of sub-phrases to predict
   split <- unlist (stri_split (phrase, regex = "[ ]+"))
   if (length (split) > 1) {
-    phrases <- sapply (2:length (split), function (end) split [1:end])
+    phrases <- sapply (1:length (split), function (end) split [1:end])
     phrases <- sapply (phrases, function (p) paste (p, collapse = " "))
   } else {
     phrases <- split
