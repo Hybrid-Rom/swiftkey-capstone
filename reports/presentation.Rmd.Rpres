@@ -1,0 +1,56 @@
+Type Ahead Prediction Model
+========================================================
+author: Nick Allen
+date: December 2014
+
+Data Preparation
+========================================================
+
+- Merge the Twitter, News, and Blog data
+- Randomly assign each line to a training or test set
+- Split lines into sentences and mark sentence boundaries
+- Keep only letters, numbers, whitespace and ' (for contractions)
+- Lowercase all letters
+- Replace all numbers with a single numeric identifier (###)
+    - Works quite well for a phrase like '353 million' or '292 billion', but not for a frequent numeric expression like 'the 1980s'
+- Trim excess whitespace
+
+N-Gram Model
+========================================================
+
+- An N-gram model conditions the probability of a word based on its context
+- The context is the previous 'n-1' words
+    - Bigram model considers the previous word
+    - Trigram model considers the previous 2 words
+    - 4-gram considers the previous 3 words
+- The probability of a phrase is simply the number of times the phrase was seen in the training data divided by the number of times the context was seen
+    - p (we love) = count (we love) / count (we)
+
+Multi-Level Model
+========================================================
+
+- The model combines a unigram, bigram, and trigram model
+- Larger 'N' models...
+   - Take into account a greater context and tend to be more accurate
+   - Have a greater number of n-grams and more frequently encounter ones not in the training data and thus have no basis for a prediction
+- A multi-level model balances the advantages and disadvantages of each
+   - First consult the larger 'N' models (trigram) and only consult the lower orders as needed
+
+Application
+========================================================
+
+- The application provides a text box for typing 
+    - The application updates automatically as the user types
+    - The most likely next word as suggested by the model is shown directly under the text entry box
+- Figure 1: The model's top 5 Suggestions along with the associated probabilities of each
+- Figure 2: The model's cumulative accuracy in predicting each sub-phrase
+- Figure 3: The cumulative suggestions of the model for the entire phrase
+    - Nodes with a caret ^ contains a component of the phrase
+    - Connected nodes contain the model's suggestions for that phrase component
+
+Resources
+========================================================
+
+- [Application](https://farsite.shinyapps.io/swiftkey-cap/)
+- [Source Code](https://github.com/nickwallen/swiftkey-capstone)
+- [Presentation]()
