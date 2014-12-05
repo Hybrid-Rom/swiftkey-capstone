@@ -4,12 +4,12 @@ This project implements a typeahead prediction model that suggests words as a us
 
 ### Getting Started
 
-To load, preprocess the data, and build the typeahead model simply run the following commands within an R session.  The project uses [Project Template](http://projecttemplate.net/) to organize the code base.  Once that's done, you can execute any code that you'd like.
+To load, preprocess the data, and build the typeahead model simply run the following commands within an R session.  The project uses [Project Template](http://projecttemplate.net/) to organize the code base.  
 
 	library('ProjectTemplate')
 	load.project()
 
-The data backing the typeahead model itself is contained within a data set called 'ngrams'.
+The data backing the typeahead model itself is contained within a data set called `ngrams`.
 
 	head (ngrams)
 	str (ngrams)
