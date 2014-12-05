@@ -1,3 +1,7 @@
+
+
+This project implements a typeahead prediction model that suggests words as a user types to help improve their typing efficiency.  This is akin to products such as [Swiftkey](http://swiftkey.com/en/) which are available for Android and iOS mobile devices.  This was completed as the Project Capstone for the [Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1) offered by [Johns Hopkins University](http://www.jhu.edu/) through Coursera.
+
 ### Getting Started
 
 To load your new project, you'll first need to `setwd()` into the directory
