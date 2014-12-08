@@ -1,75 +1,85 @@
 
 shinyUI (
-  fluidPage (
-    
-    # page title
-    titlePanel ("Type Ahead Prediction"),
-    
-    # the 1st row
-    fluidRow (
-      
-      # allow the user to type
-      wellPanel (
-        textInput ("context", label = "", value = "Start with a few kind words about"),
-        tags$style (type="text/css", "input[type=text] {width: 100%;}"),
-        helpText (textOutput ("next_word"))
-      )
-    ),
-    
-    # the 2nd row
-    fluidRow (
-      
-      # a plot showing the top N most likely next words
-      column (6,
-              h5 ("Top Suggestions"),
-              plotOutput ("next_words_plot")
-      ),
-      
-      # a plot showing the predicted words 
-      column (6, 
-              h5 ("Type Ahead Accuracy"),
-              plotOutput ("accuracy_plot")
-      )
-    ),
-    
-    # the 3rd row
-    fluidRow (
-      column (6, 
-              helpText ( 
-                paste0 ("Figure 1: The most likely next words and the probability ", 
-                        "of each as calculated by the model."))),
-      column (6, 
-              helpText ( 
-                paste0 ("Figure 2: The cumulative accuracy of type ahead prediction for the current ",
-                        "phrase. The model is considered accurate if the next word appears ", 
-                        "in the top 5 suggestions.")))
-    ),
-    
-    # the 4th row
-    fluidRow (
-      
-      # simple network
-      column (6, 
-              h5 ("Phrase Tree"),
-              networkD3::simpleNetworkOutput ("phrase_tree")),
-      
-      column (6)
-    ),
-    
-    # the 5th row
-    fluidRow (
-      column (6, 
-              helpText (paste0 ("Figure 3: The cumulative suggestions of the model for the entire phrase. ",
-                                "Each node containing a caret (^) contains a component of the entire phrase. Those ",
-                                "nodes connected contain the model's suggestions based on that phrase component."))), 
-      column (6)
-    ),
-    
-    # sub-title
-    fluidRow (
-      wellPanel (
-        helpText (tags$a(href="https://www.linkedin.com/in/nickallenofcolumbus", "Nick Allen"), " - December 2014")
-      )
+    fluidPage (
+        
+        # page title
+        titlePanel ("Type Ahead Prediction"),
+        
+        # the 1st row
+        fluidRow (
+            
+            # allow the user to type
+            wellPanel (
+                textInput ("context", label = "", value = "Start with a few kind words about"),
+                tags$style (type="text/css", "input[type=text] {width: 100%;}"),
+                helpText (textOutput ("next_word"))
+            )
+        ),
+        
+        # the 2nd row
+        fluidRow (
+            
+            # a plot showing the top N most likely next words
+            column (6,
+                    h5 ("Top Suggestions"),
+                    plotOutput ("next_words_plot")
+            ),
+            
+            # a plot showing the predicted words 
+            column (6, 
+                    h5 ("Type Ahead Accuracy"),
+                    plotOutput ("accuracy_plot")
+            )
+        ),
+        
+        # the 3rd row
+        fluidRow (
+            column (6, 
+                    helpText ( 
+                        paste0 ("Figure 1: The most likely next words and the probability ", 
+                                "of each as calculated by the model."))),
+            column (6, 
+                    helpText ( 
+                        paste0 ("Figure 2: The cumulative accuracy of type ahead prediction for the current ",
+                                "phrase. The model is considered accurate if the next word appears ", 
+                                "in the top 5 suggestions.")))
+        ),
+        
+        # the 4th row
+        fluidRow (
+            
+            # simple network
+            column (6, 
+                    h5 ("Phrase Tree"),
+                    networkD3::simpleNetworkOutput ("phrase_tree")),
+            
+            column (6)
+        ),
+        
+        # the 5th row
+        fluidRow (
+            column (6, 
+                    helpText (paste0 ("Figure 3: The cumulative suggestions of the model for the entire phrase.  Rearrange, ",
+                                      "click, and move the nodes to uncover relations between the model's suggestions. ",
+                                      "Each node containing a caret (^) is a sub-component of the phrase. Those ",
+                                      "nodes connected contain the model's suggestions."))), 
+            column (6)
+        ),
+        
+        fluidRow (
+            wellPanel (
+                column (4, 
+                        align = "left", 
+                        tags$a(href="http://rpubs.com/willylane333/46619", 
+                               "How does this work?")),
+                column (4, 
+                        align = "center",
+                        tags$a(href="https://github.com/nickwallen/swiftkey-capstone", 
+                               "Where is the code?")),
+                column (4, align = "right",
+                        tags$a(href="https://www.linkedin.com/in/nickallenofcolumbus", 
+                               "Who did this?"))
+            )
+        )
     )
-  )
 )
