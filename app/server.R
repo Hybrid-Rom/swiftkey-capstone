@@ -47,7 +47,7 @@ shinyServer (function (input, output) {
       geom_line () +
       geom_point (aes (color = as.character(accurate)), size = 5) + 
       scale_colour_manual (values = c("TRUE"="green", "FALSE"="red")) +
-      scale_x_discrete () +
+      scale_x_discrete (labels = accuracy()$word) +
       scale_y_continuous (label = percent, limits = c(0, 1)) +
       xlab ("Phrase Length") +
       ylab ("Cumulative Accuracy") +
