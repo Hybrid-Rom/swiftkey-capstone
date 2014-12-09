@@ -49,7 +49,7 @@ shinyServer (function (input, output) {
       scale_colour_manual (values = c("TRUE"="green", "FALSE"="red")) +
       scale_x_discrete (labels = accuracy()$word) +
       scale_y_continuous (label = percent, limits = c(0, 1)) +
-      xlab ("Phrase Length") +
+      xlab ("") +
       ylab ("Cumulative Accuracy") +
       theme (legend.position = "none")
   })
