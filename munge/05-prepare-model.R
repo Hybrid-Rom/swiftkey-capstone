@@ -2,7 +2,7 @@
 # prepares the ngram model for deployment
 #
 
-model <- ngrams
+model <- copy (ngrams)
 
 # remove extraneous columns
 model [, phrase_count := NULL]
@@ -18,4 +18,3 @@ model <- model [ rank < 6 ]
 # save the ngram model in the app directory
 save (list = "model", envir = .GlobalEnv, file = "app/ngrams.RData")
 rm (model)
-s

@@ -3,10 +3,10 @@
 # and clean each sentence.
 #
 
-cache ("sentences", {
+sentences <- ecache (key = "sentences", {
     
     # split the text input into sentences and clean
     # test data should not be cleaned    
-    sentences <- list (train = clean_sentences (split_sentences (lines$train)),
-                       test  = split_sentences (lines$test))
+    list (train = clean_sentences (split_sentences (lines$train)),
+          test  = split_sentences (lines$test))
 })

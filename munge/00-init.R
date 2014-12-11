@@ -4,13 +4,16 @@
 #
 
 # what percentage of the input data should be kept for training?
-input.p <- 0.15
+input.p <- 0.01
 
 # what percentage to use for the training data
 train.p <- 0.95
 
-# enable data set caching
-options (cache_write = TRUE)
+# where is the data stored?
+data_path <- "data/en_US/"
+
+options (verbose = FALSE)
+options (cache_dir = "cache")
 
 #
 # initialization logic
