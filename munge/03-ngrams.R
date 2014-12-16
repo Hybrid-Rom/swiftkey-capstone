@@ -2,7 +2,7 @@
 # given the clean, pre-processed sentences, create a data set containing the ngrams
 # extracted from these sentences.
 #
-cache ("ngrams", {
+ngrams <- ecache (key = "ngrams", {
     
     # create a unigram model
     unigrams <- create_ngrams (sentences$train, 1)
@@ -35,4 +35,4 @@ cache ("ngrams", {
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 
 # context, then the 4th word is predicted
-cache ("test.ngrams",  create_ngrams (sentences$train, 4))
+ecache (key = "test.ngrams",  create_ngrams (sentences$train, 4))

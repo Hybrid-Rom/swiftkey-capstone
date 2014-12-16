@@ -5,7 +5,7 @@ recursive_loading: FALSE
 munging: FALSE
 logging: FALSE
 load_libraries: TRUE
-libraries: stringr, ggplot2, tm, scales, stringi, stats, wordcloud, knitr, shiny, networkD3
+libraries: stringr, ggplot2, tm, scales, stringi, stats, wordcloud, knitr, shiny, networkD3, nmisc
 as_factors: TRUE
 data_tables: TRUE
 attach_internal_libraries: FALSE
