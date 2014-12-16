@@ -30,78 +30,22 @@ shinyServer (function (input, output) {
   
   # plot the relative probability of the top N next words
   output$next_words_plot <- renderPlot ({
-    
-    ggplot (next_words(), aes (reorder (word, p), p, fill = word)) + 
-      geom_bar (stat = "identity", width = 0.55) + 
-      scale_y_continuous (label = percent) +
-      coord_flip () +
-      xlab ("") +
-      ylab ("Probability") +
-      theme (legend.position = "none", axis.text.y = element_text (size = 20)) 
+    plot_top_words (next_words ())
   })
   
   # visualize accuracy across the entire phrase
   output$accuracy_plot <- renderPlot ({
-
-    ggplot (diagnostics (), aes (length, accuracy)) + 
-      geom_line () +
-      geom_point (aes (color = as.character(accurate)), size = 5) + 
-      scale_colour_manual (values = c("TRUE"="green", "FALSE"="red")) +
-      scale_x_discrete (labels = diagnostics()$word) +
-      scale_y_continuous (label = percent, limits = c(0, 1)) +
-      xlab ("") +
-      ylab ("Cumulative Accuracy") +
-      theme (legend.position = "none")
+    plot_phrase_accuracy (diagnostics ())
   })
   
   # display the tree of predictions for each sub-phrase
   output$phrase_tree <- renderSimpleNetwork ({
-    diag <- diagnostics ()
-    
-    # create links for the words typed by the user - these should be weighted heavily
-    word_links <- diag [, phrase, by = context]
-    setnames (word_links, c("source","target"))
-
-    # create links for the model's suggestions - weighted by probability
-    sugg_links <- rbindlist (list (diag [, w1, by = context],
-                                   diag [, w2, by = context],
-                                   diag [, w3, by = context],
-                                   diag [, w4, by = context],
-                                   diag [, w5, by = context]))
-    setnames (sugg_links, c("source", "target"))
-    sugg_links <- sugg_links [complete.cases (sugg_links)]
-    
-    # create a network plot
-    links <- rbind (word_links, sugg_links)
-    if (nrow (links) < 100) {
-      simpleNetwork (links, font = 16)
-    }
+    plot_phrase_tree (diagnostics ())
   })
   
   # display which models (unigram, bigram, etc) are being leveraged
   output$katz_plot <- renderPlot ({
-      
-      diag <- diagnostics ()
-      
-      # add a label for the model that was used for the prediction
-      diag [n == 1, nlabel := "Unigram"]
-      diag [n == 2, nlabel := "Bigram" ]
-      diag [n == 3, nlabel := "Trigram"]
-      diag [, nlabel := factor (nlabel, levels = c("Unigram", "Bigram", "Trigram"))]
-      
-      ggplot (diag, aes (x = nlabel, fill = as.character (accurate))) + 
-          geom_bar (aes (y = ..count.. / sum (..count..)), width = 0.45) +
-          stat_bin (geom = "text", 
-                    aes (label = ..count.., 
-                         y = (..count.. / sum (..count..))), 
-                    vjust = 2) +
-          scale_y_continuous (label = percent) + 
-          scale_x_discrete (drop = FALSE) +
-          scale_fill_manual (values = c("TRUE"="chartreuse3", "FALSE"="red3"),
-                             labels = c("Inaccurate", "Accurate")) +
-          xlab ("") +
-          ylab ("Model Usage") + 
-          theme (legend.title = element_blank())
+      plot_katz_models (diagnostics ())
   })
 })
 
