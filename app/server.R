@@ -5,7 +5,7 @@ source ("helpers.R")
 # load the ngram model used for type ahead prediction
 load ("ngrams.RData")
 
-shinyServer (function (input, output) {
+shinyServer (function (input, output, clientData, session) {
 
   # predict the top 5 most likely words to be next
   next_words <- reactive ({
@@ -26,6 +26,15 @@ shinyServer (function (input, output) {
     
     # if no prediction can be made, prompt the user to keep typing
     ifelse (!is.na (w), w,  "Continue typing for further suggestions...")
+  })
+  
+  # when the user clicks the "random" button, generate a randomized phrase
+  observe ({
+    
+    if (input$gorandom > 0) {
+      phrase <- generate_phrase (ngrams)
+      updateTextInput (session, "context", value = phrase)
+    }
   })
   
   # plot the relative probability of the top N next words

@@ -1,5 +1,6 @@
 
 shinyUI (
+  
   fluidPage (
     
     # page title
@@ -10,10 +11,15 @@ shinyUI (
       
       # allow the user to type
       wellPanel (
-        textInput ("context", 
-                   label = "", 
-                   value = "Start with a few kind words about"),
-        tags$style (type="text/css", "input[type=text] {width: 100%;}"),
+        
+        # text entry box
+        fluidRow (
+          column (10, textInput ("context", label = "", value = "Start with a few kind words about")),
+          tags$style (type="text/css", "input[type=text] {width: 100%;}"),
+          column (2, actionButton ("gorandom", label = "Random"))
+        ),
+
+        # the predicted next word
         helpText (textOutput ("next_word"))
       )
     ),
