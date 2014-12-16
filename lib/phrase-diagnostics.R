@@ -1,10 +1,18 @@
-
-#
-# measures the predictive accuracy of a phrase word by word. for example
-# the phrase "which is the best" would have accuracy measured for each 
-# of the sub-phrases; "which is", "which is the", and "which is the best".
-#
-phrase_accuracy <- function (phrase, ngrams) {
+#'
+#' phrase diagnostics
+#'
+#' provides diagnostics to measure the predictive accuracy
+#' of the type-ahead language model.  an input phrase is broken
+#' into sub-phrases and diagnostics are provided for each. for
+#' example, the phrase "which is the best" would be broken into
+#' the sub-phrases; "which is", "which is the", and "which is the best".
+#' model diagnostics would be provided for each sub-phrase.
+#'
+#'@param phrase The phrase that diagnostics are needed for.
+#'@param ngram The ngram language model.
+#'@return Diagnostics used to assess model accuracy.s
+#'
+phrase_diagnostics <- function (phrase, ngrams) {
   
   # clean the input
   phrase <- clean_sentences (phrase, end_tag = "")

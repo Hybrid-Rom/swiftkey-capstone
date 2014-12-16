@@ -12,9 +12,9 @@ shinyServer (function (input, output) {
     predict_next_word (input$context, ngrams)
   })
   
-  # calculate the accuracy across each sub-phrase
-  accuracy <- reactive ({
-    phrase_accuracy (input$context, ngrams)
+  # retrieve diagnostics for how the model performed on the given input
+  diagnostics <- reactive ({
+    phrase_diagnostics (input$context, ngrams)
   })
   
   # what is the single word most likely to be next?
@@ -43,11 +43,11 @@ shinyServer (function (input, output) {
   # visualize accuracy across the entire phrase
   output$accuracy_plot <- renderPlot ({
 
-    ggplot (accuracy (), aes (length, accuracy)) + 
+    ggplot (diagnostics (), aes (length, accuracy)) + 
       geom_line () +
       geom_point (aes (color = as.character(accurate)), size = 5) + 
       scale_colour_manual (values = c("TRUE"="green", "FALSE"="red")) +
-      scale_x_discrete (labels = accuracy()$word) +
+      scale_x_discrete (labels = diagnostics()$word) +
       scale_y_continuous (label = percent, limits = c(0, 1)) +
       xlab ("") +
       ylab ("Cumulative Accuracy") +
@@ -56,18 +56,18 @@ shinyServer (function (input, output) {
   
   # display the tree of predictions for each sub-phrase
   output$phrase_tree <- renderSimpleNetwork ({
-    acc <- accuracy ()
+    diag <- diagnostics ()
     
     # create links for the words typed by the user - these should be weighted heavily
-    word_links <- acc [, phrase, by = context]
+    word_links <- diag [, phrase, by = context]
     setnames (word_links, c("source","target"))
 
     # create links for the model's suggestions - weighted by probability
-    sugg_links <- rbindlist (list (acc [, w1, by = context],
-                                   acc [, w2, by = context],
-                                   acc [, w3, by = context],
-                                   acc [, w4, by = context],
-                                   acc [, w5, by = context]))
+    sugg_links <- rbindlist (list (diag [, w1, by = context],
+                                   diag [, w2, by = context],
+                                   diag [, w3, by = context],
+                                   diag [, w4, by = context],
+                                   diag [, w5, by = context]))
     setnames (sugg_links, c("source", "target"))
     sugg_links <- sugg_links [complete.cases (sugg_links)]
     
@@ -81,15 +81,15 @@ shinyServer (function (input, output) {
   # display which models (unigram, bigram, etc) are being leveraged
   output$katz_plot <- renderPlot ({
       
-      acc <- accuracy ()
+      diag <- diagnostics ()
       
       # add a label for the model that was used for the prediction
-      acc [n == 1, nlabel := "Unigram"]
-      acc [n == 2, nlabel := "Bigram" ]
-      acc [n == 3, nlabel := "Trigram"]
-      acc [, nlabel := factor (nlabel, levels = c("Unigram", "Bigram", "Trigram"))]
+      diag [n == 1, nlabel := "Unigram"]
+      diag [n == 2, nlabel := "Bigram" ]
+      diag [n == 3, nlabel := "Trigram"]
+      diag [, nlabel := factor (nlabel, levels = c("Unigram", "Bigram", "Trigram"))]
       
-      ggplot (acc, aes (x = nlabel, fill = as.character (accurate))) + 
+      ggplot (diag, aes (x = nlabel, fill = as.character (accurate))) + 
           geom_bar (aes (y = ..count.. / sum (..count..)), width = 0.45) +
           stat_bin (geom = "text", 
                     aes (label = ..count.., 
