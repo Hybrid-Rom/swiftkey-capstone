@@ -37,9 +37,9 @@ predict_next_word <- function (phrase, ngrams, grams = 3:1) {
       ctx <- paste (ctx, collapse = " ")
       
       # find the top 'N' predictions
-      predictions <- ngrams [ context == ctx, list (word, p)]
+      predictions <- ngrams [ context == ctx, list (word, p, n)]
       if (nrow (predictions) > 0) {
-        
+          
         # basic corrections for predictions that should not be made
         predictions [word == "$", word := "."]
         predictions [word == "###", word := NA]

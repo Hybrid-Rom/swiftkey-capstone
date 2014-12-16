@@ -32,7 +32,7 @@ shinyServer (function (input, output) {
   output$next_words_plot <- renderPlot ({
     
     ggplot (next_words(), aes (reorder (word, p), p, fill = word)) + 
-      geom_bar (stat = "identity") + 
+      geom_bar (stat = "identity", width = 0.55) + 
       scale_y_continuous (label = percent) +
       coord_flip () +
       xlab ("") +
@@ -76,6 +76,32 @@ shinyServer (function (input, output) {
     if (nrow (links) < 100) {
       simpleNetwork (links, font = 16)
     }
+  })
+  
+  # display which models (unigram, bigram, etc) are being leveraged
+  output$katz_plot <- renderPlot ({
+      
+      acc <- accuracy ()
+      
+      # add a label for the model that was used for the prediction
+      acc [n == 1, nlabel := "Unigram"]
+      acc [n == 2, nlabel := "Bigram" ]
+      acc [n == 3, nlabel := "Trigram"]
+      acc [, nlabel := factor (nlabel, levels = c("Unigram", "Bigram", "Trigram"))]
+      
+      ggplot (acc, aes (x = nlabel, fill = as.character (accurate))) + 
+          geom_bar (aes (y = ..count.. / sum (..count..)), width = 0.45) +
+          stat_bin (geom = "text", 
+                    aes (label = ..count.., 
+                         y = (..count.. / sum (..count..))), 
+                    vjust = 2) +
+          scale_y_continuous (label = percent) + 
+          scale_x_discrete (drop = FALSE) +
+          scale_fill_manual (values = c("TRUE"="chartreuse3", "FALSE"="red3"),
+                             labels = c("Inaccurate", "Accurate")) +
+          xlab ("") +
+          ylab ("Model Usage") + 
+          theme (legend.title = element_blank())
   })
 })
 

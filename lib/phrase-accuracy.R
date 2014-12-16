@@ -26,10 +26,10 @@ phrase_accuracy <- function (phrase, ngrams) {
   ), by = phrase]
   
   # grab the top 5 word suggestions for each phrase
-  phrases [, c("w1","w2","w3","w4","w5") := {
-    words <- predict_next_word (context, ngrams)$word
-    words <- pad (words, n = 5, pad_with = NA)
-    as.list (words)
+  phrases [, c("w1","w2","w3","w4","w5","n") := {
+    nxt <- predict_next_word (context, ngrams)  
+    words <- pad (nxt$word, n = 5, pad_with = NA)
+    as.list (c(words, unique (nxt$n)))
   }, by = phrase ]
 
   # is the actual next word in the top 5 suggestions?
