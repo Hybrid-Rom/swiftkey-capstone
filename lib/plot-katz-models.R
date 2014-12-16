@@ -23,7 +23,6 @@ plot_katz_models <- function (diagnostics) {
     scale_fill_manual (values = c("TRUE"="chartreuse3", "FALSE"="red3"),
                        labels = c("Inaccurate", "Accurate")) +
     xlab ("") +
-    ylab ("Model Usage") + 
+    ylab ("Percentage of Overall Use") + 
     theme (legend.title = element_blank())
-  
 }

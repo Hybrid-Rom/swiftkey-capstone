@@ -61,8 +61,9 @@ shinyUI (
             h5 ("Katz Back-Off"),
             plotOutput ("katz_plot"),
             helpText (
-              paste0 ("Figure 3: Identifies which n-gram models have been leveraged to make the cumulation ",
-                      "predictions for a phrase.  The accuracy of each model is also highlighted.")))
+              paste0 ("Figure 3: Identifies the n-gram models that are used more frequently for ",
+                      "type ahead prediction.  The y-axis shows the percentage of time the ", 
+                      "ngram model was used.  The accuracy of each model is also highlighted.")))
         ),
         
         # network graph of the model's cumulative suggestions
@@ -73,7 +74,7 @@ shinyUI (
             h5 ("Phrase Tree"),
             networkD3::simpleNetworkOutput ("phrase_tree"),
             helpText (
-              paste0 ("Figure 4: The cumulative suggestions of the model for the entire phrase.  Rearrange, ",
+              paste0 ("Figure 4: The cumulative top suggestions for the entire phrase.  Rearrange, ",
                       "click, and move the nodes to uncover relations between the model's suggestions. ",
                       "Each node containing a caret (^) is a sub-component of the phrase. Those ",
                       "nodes connected contain the model's suggestions.")
