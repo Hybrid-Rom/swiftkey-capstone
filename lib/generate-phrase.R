@@ -4,7 +4,7 @@
 #' Generates a randomized phrase based on the languge model's
 #' top 5 suggested next words.
 #'
-generate_phrase <- function (ngrams, max_length = 35) {
+generate_phrase <- function (ngrams, max_length = 25) {
   
   phrase <- "^"
   for (i in 1:max_length) {
