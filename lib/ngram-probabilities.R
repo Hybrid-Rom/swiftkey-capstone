@@ -32,6 +32,5 @@ ngram_probabilities <- function (ngrams) {
     # storing log (p) makes calculating phrase probability easier
     ngrams [, logp := log (p) ]
     
-    # probabilities calculated in-place
-    return (NULL)
+    return (ngrams)
 }
