@@ -4,7 +4,7 @@
 #
 
 # what percentage of the input data should be kept for training?
-input.p <- 0.01
+input.p <- 0.75
 
 # what percentage to use for the training data
 train.p <- 0.95
