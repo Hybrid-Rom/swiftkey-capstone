@@ -4,20 +4,21 @@
 #
 ngrams <- ecache (key = "ngrams", {
     
-    # create a unigram model
-    unigrams <- create_ngrams (sentences$train, 1)
-    ngram_probabilities (unigrams)  
-    
-    # create a bigram model
-    bigrams <- create_ngrams (sentences$train, 2)
-    ngram_probabilities (bigrams) 
-    
-    # create a trigram model
-    trigrams <- create_ngrams (sentences$train, 3)
-    ngram_probabilities (trigrams)
-    
+    # create a unigram, bigram, trigram, and 4-gram model
+    list_of_models <- lapply (1:4, function (n) {
+      
+      # cache each model 
+      ecache (key = paste0 ("grams", n), {
+        
+        # create the model and calculate its probabilities
+        g <- create_ngrams (sentences$train, n)
+        ngram_probabilities (g)
+      })
+    })
+      
     # combine the models into a single data set
-    ngrams <- rbindlist (list (unigrams, bigrams, trigrams))
+    ngrams <- rbindlist (list_of_models)
+    rm (list_of_grams)
     
     # exclude ngrams that offer little predictive power
     ngrams <- ngrams [ phrase_count > 3 ]
@@ -35,4 +36,4 @@ ngrams <- ecache (key = "ngrams", {
 
 # for testing purposes, extract 4-grams only. the first 3 words provide the 
 # context, then the 4th word is predicted
-ecache (key = "test.ngrams",  create_ngrams (sentences$train, 4))
+ecache (key = "grams4",  create_ngrams (sentences$train, 4))
