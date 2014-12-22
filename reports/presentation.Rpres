@@ -1,51 +1,54 @@
 Type Ahead Prediction Model
 ========================================================
-author: Nick Allen
-date: December 2014
+author: Nick Allen - December 2014
+
+A typeahead prediction model suggests words as a user types to improve typing efficiency on constrained mobile devices. This is akin to products such as [Swiftkey](http://swiftkey.com) which is available for Android and iOS mobile devices. 
 
 Data Preparation
 ========================================================
 
-- Merge the Twitter, News, and Blog data
-- Randomly assign each line to a training or test set
-- Split lines into sentences and mark sentence boundaries
-- Keep only letters, numbers, whitespace and ' (for contractions)
-- Lowercase all letters
-- Replace all numbers with a single numeric identifier (###)
-    - Works quite well for a phrase like '353 million' or '292 billion', but not for a frequent numeric expression like 'the 1980s'
-- Trim excess whitespace
+- Aggregated text corpus of over 4.2 million lines from diverse sources including Twitter, News, and Blogs
+- Randomly assigned each line to a training or test set
+- Split lines into sentences and marked these boundaries
+- Trimmed excess whitespace
+- Kept only Latin alphanumerics, whitespace and ' (for contractions)
+- Transformed all letters to lower case
+- Replaced all numbers with a single numeric identifier; 1, 2900, 839929, etc replaced by  '###'
+    - Works well for predicting a phrase like '353 million', but not for a common expression like 'the 1980s'
 
 N-Gram Model
 ========================================================
 
-- An N-gram model conditions the probability of a word based on its context
-- The context is the previous 'n-1' words
-    - Bigram model considers the previous word
-    - Trigram model considers the previous 2 words
-    - 4-gram considers the previous 3 words
-- The probability of a phrase is simply the number of times the phrase was seen in the training data divided by the number of times the context was seen
-    - p (we love) = count (we love) / count (we)
+- Conditions the probability of the next word based on the previous 'N-1' words (context)
+    - Phrase: 'We love you'
+    - Context: 'We love'
+    - Next Word: 'You'
+- The length of the context depends on 'N'
+    - 2-gram models consider the previous word only
+    - 3-gram model considers the previous 2 words
+- Probability of a phrase is the number of times the phrase occurred divided by the number of times the context occurred
+    - p(We Love You) = #(We Love You) / #(We Love)
 
-Multi-Level Model
+Katz Back-off 
 ========================================================
 
-- The model combines a unigram, bigram, and trigram model
-- Larger 'N' models...
-   - Take into account a greater context and tend to be more accurate
-   - Have a greater number of n-grams and more frequently encounter ones not in the training data and thus have no basis to make a prediction
-- A multi-level model balances the advantages and disadvantages of each
-   - First consult the larger 'N' models (trigram) and only consult the lower order models as needed
+- The language model combines a unigram, bigram, and trigram model.  Why?
+- Models where 'N' is larger...
+   - Account for greater context and tend to be more accurate
+   - But, more frequently encounter n-grams not in the training data and thus have no basis to make a prediction
+- Using a [Katz Back-off model](http://en.wikipedia.org/wiki/Katz%27s_back-off_model) balances the advantages and disadvantages of each
+   - First consult the larger 'N' models (trigram) and only consult the lower order models, as needed
 
 Application
 ========================================================
 
-- The application provides a text box for typing 
-    - Updates automatically as the user types
-    - Most likely next word is shown directly under the text entry box
-- Figure 1: The model's top 5 Suggestions along with the associated probabilities of each
-- Figure 2: The model's cumulative accuracy in predicting each sub-phrase
-- Figure 3: The cumulative suggestions of the model for the entire phrase
-    - Nodes with a caret ^ contain a component of the phrase and connected nodes contain the model's suggestions for that phrase component
+- The application provides a text box that makes suggestions to the user as she types
+- Multiple model diagnostics are updated in real-time
+    - Figure 1: Top 5 suggestions
+    - Figure 2: Cumulative accuracy for the phrase
+    - Figure 3: Cumulative accuracy of each N-gram model
+    - Figure 4: Cumulative suggestions for the phrase
+- By pressing the 'Random' button, an entire sentence is generated based on the model's understanding of the language
 
 Resources
 ========================================================
